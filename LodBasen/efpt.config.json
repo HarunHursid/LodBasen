@@ -1,0 +1,73 @@
+﻿{
+   "CodeGenerationMode": 3,
+   "ContextClassName": "lodbasen_dk_db_lodbasenContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": true,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "LodBasen",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[Admin]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Barn]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Gruppe]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Leder]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Lodsalg]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Lodseddel]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Modtager]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Sælger]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "mssql5.lodbasen_dk_db_lodbasen.dbo",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": false,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false
+}
