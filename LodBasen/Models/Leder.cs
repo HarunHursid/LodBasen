@@ -28,12 +28,12 @@ public partial class Leder
     public int GruppeId { get; set; }
 
     [ForeignKey("GruppeId")]
-    [InverseProperty("Leders")]
+    [InverseProperty("Ledere")]
     public virtual Gruppe Gruppe { get; set; }
 
     [InverseProperty("Leder")]
-    public virtual ICollection<Modtager> Modtagers { get; set; } = new List<Modtager>();
+    public virtual ICollection<Modtager> Modtagere { get; set; } = new List<Modtager>();
 
     [InverseProperty("Leder")]
-    public virtual ICollection<Sælger> Sælgers { get; set; } = new List<Sælger>();
+    public virtual ICollection<Sælger> Sælgere { get; set; } = new List<Sælger>();
 }

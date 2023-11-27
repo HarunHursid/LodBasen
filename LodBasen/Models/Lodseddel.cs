@@ -20,5 +20,5 @@ public partial class Lodseddel
     public int Solgt { get; set; }
 
     [InverseProperty("Lodseddel")]
-    public virtual ICollection<Lodsalg> Lodsalgs { get; set; } = new List<Lodsalg>();
+    public virtual ICollection<Lodsalg> Lodsalgssamling { get; set; } = new List<Lodsalg>();
 }

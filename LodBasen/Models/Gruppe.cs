@@ -22,8 +22,8 @@ public partial class Gruppe
     public string GruppeNavn { get; set; }
 
     [InverseProperty("Gruppe")]
-    public virtual ICollection<Barn> Barns { get; set; } = new List<Barn>();
+    public virtual ICollection<Barn> Børn { get; set; } = new List<Barn>();
 
     [InverseProperty("Gruppe")]
-    public virtual ICollection<Leder> Leders { get; set; } = new List<Leder>();
+    public virtual ICollection<Leder> Ledere { get; set; } = new List<Leder>();
 }

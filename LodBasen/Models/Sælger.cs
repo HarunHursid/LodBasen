@@ -22,13 +22,13 @@ public partial class Sælger
     public int? AdminId { get; set; }
 
     [ForeignKey("AdminId")]
-    [InverseProperty("Sælgers")]
+    [InverseProperty("Sælgere")]
     public virtual Admin Admin { get; set; }
 
     [ForeignKey("LederId")]
-    [InverseProperty("Sælgers")]
+    [InverseProperty("Sælgere")]
     public virtual Leder Leder { get; set; }
 
     [InverseProperty("Sælger")]
-    public virtual ICollection<Lodsalg> Lodsalgs { get; set; } = new List<Lodsalg>();
+    public virtual ICollection<Lodsalg> Lodsalgssamling { get; set; } = new List<Lodsalg>();
 }

@@ -1,4 +1,41 @@
 ﻿@page
 @model LodBasen.Pages.Barn.GetBarnModel
 @{
+    ViewData["Title"] = "GetBarn";
 }
+<h1>Liste af børn</h1>
+@* <p>
+    <a asp-page="/Barn/CreateBarn">Tilføj barn</a>
+</p>
+<form>
+    <p>
+        Search: <input type="text" asp-for="FilterCriteria" />
+        <input type="submit" value="Filter" />
+        <a asp-page="/Barn/GetBarn">Back to Full List </a>
+    </p>
+</form> *@
+<h4 style="color:red"> Liste af børn</h4>
+<<table class="table">
+    <thead>
+        <tr>
+            <th> Navn </th>
+            <th> Antal </th>
+            <th> Solgte </th>
+            <th> Gruppe </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model.Børn != null)
+        {
+            @foreach (var item in Model.Børn)
+            {
+                <tr>
+                    <td>  @item.Navn </td>
+                    <td>  @item.Antal </td>
+                    <td>  @item.Solgt </td>
+                    <td>  @item.GruppeId </td>
+                </tr>
+            }
+        }
+</table>

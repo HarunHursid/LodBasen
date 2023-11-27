@@ -25,14 +25,14 @@ public partial class Lodsalg
     public int LodseddelId { get; set; }
 
     [ForeignKey("LodseddelId")]
-    [InverseProperty("Lodsalgs")]
+    [InverseProperty("Lodsalgssamling")]
     public virtual Lodseddel Lodseddel { get; set; }
 
     [ForeignKey("ModtagerId")]
-    [InverseProperty("Lodsalgs")]
+    [InverseProperty("Lodsalgssamling")]
     public virtual Modtager Modtager { get; set; }
 
     [ForeignKey("SælgerId")]
-    [InverseProperty("Lodsalgs")]
+    [InverseProperty("Lodsalgssamling")]
     public virtual Sælger Sælger { get; set; }
 }

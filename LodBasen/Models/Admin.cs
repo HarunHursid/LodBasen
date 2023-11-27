@@ -25,5 +25,5 @@ public partial class Admin
     public int Udleveret { get; set; }
 
     [InverseProperty("Admin")]
-    public virtual ICollection<Sælger> Sælgers { get; set; } = new List<Sælger>();
+    public virtual ICollection<Sælger> Sælgere { get; set; } = new List<Sælger>();
 }

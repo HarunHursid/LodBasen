@@ -22,13 +22,13 @@ public partial class Modtager
     public int? BarnId { get; set; }
 
     [ForeignKey("BarnId")]
-    [InverseProperty("Modtagers")]
+    [InverseProperty("Modtagere")]
     public virtual Barn Barn { get; set; }
 
     [ForeignKey("LederId")]
-    [InverseProperty("Modtagers")]
+    [InverseProperty("Modtagere")]
     public virtual Leder Leder { get; set; }
 
     [InverseProperty("Modtager")]
-    public virtual ICollection<Lodsalg> Lodsalgs { get; set; } = new List<Lodsalg>();
+    public virtual ICollection<Lodsalg> Lodsalgssamling { get; set; } = new List<Lodsalg>();
 }
