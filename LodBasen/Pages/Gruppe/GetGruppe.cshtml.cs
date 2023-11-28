@@ -1,12 +1,30 @@
+using LodBasen.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using LodBasen.Models;
 
 namespace LodBasen.Pages.Gruppe
 {
     public class GetGruppeModel : PageModel
     {
-        public void OnGet()
-        {
-        }
-    }
+		[BindProperty(SupportsGet = true)]
+		public string Search { get; set; }
+
+		private IGruppeService gruppeService;
+
+		public GetGruppeModel(IGruppeService service)
+		{
+			gruppeService = service;
+		}
+		public IEnumerable<Models.Gruppe> Grupper { get; set; } = new List<Models.Gruppe>();
+		public void OnGet()
+		{
+			if (!String.IsNullOrEmpty(Search))
+			{
+				Grupper = gruppeService.GetGrupper(Search);
+			}
+			else
+				Grupper = gruppeService.GetGrupper();
+		}
+	}
 }
