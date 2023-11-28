@@ -27,7 +27,7 @@ namespace LodBasen.Services.EFServices
         //public Barn GetBørnByGruppeId(int id)
         //{
         //    Barn børn = context.Set<Barn>()
-        //        //.Include(b => b.Børn)
+        //         //.Include(b => b.Børn)
         //         .AsNoTracking()
         //        .FirstOrDefault(b => b.GruppeId == id);
         //    return børn;

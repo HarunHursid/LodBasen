@@ -33,5 +33,5 @@ namespace LodBasen.Models
 
      [InverseProperty("Barn")]
       public virtual ICollection<Modtager> Modtagere { get; set; } = new List<Modtager>();
-   }
+    }
 }

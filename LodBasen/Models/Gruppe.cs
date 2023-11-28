@@ -11,6 +11,7 @@ namespace LodBasen.Models;
 [Table("Gruppe")]
 public partial class Gruppe
 {
+
     [Key]
     [Column("Gruppe_ID")]
     public int GruppeId { get; set; }
