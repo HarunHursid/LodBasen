@@ -18,7 +18,7 @@ namespace LodBasen.Services.EFServices
         }
         public Gruppe GetGruppeById(int id)
         {
-            return context.Grupper.Find(id);
+                return context.Grupper.Find(id);
         }
         public void DeleteGruppe(Gruppe gruppe)
         {

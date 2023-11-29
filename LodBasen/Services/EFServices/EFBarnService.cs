@@ -24,14 +24,17 @@ namespace LodBasen.Services.EFServices
             context.Børn.Add(barn);
             context.SaveChanges();
         }
-        //public Barn GetBørnByGruppeId(int id)
-        //{
-        //    Barn børn = context.Set<Barn>()
-        //         //.Include(b => b.Børn)
-        //         .AsNoTracking()
-        //        .FirstOrDefault(b => b.GruppeId == id);
-        //    return børn;
+        public IEnumerable<Barn> GetBørnByGruppeId(int id)
+        {
+            //IEnumerable<Barn> listBørn = new IEnumerable<Barn>();
+            // listBørn = context.Set<Barn>().Where(b => b.GruppeId == id)
+            //      //.Include(b => b.Børn)
+            //      .AsNoTracking()
+            //     .FirstOrDefault(b => b.GruppeId == id);
+            // return børn;
 
-        //}
+            return this.context.Set<Barn>().Where(b => b.GruppeId == id).Include(g => g.Gruppe).AsNoTracking().ToList();
+
+        }
     }
 }

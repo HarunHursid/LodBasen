@@ -35,10 +35,10 @@
                     </td>
                     <td>
                         <p>
-                            <a asp-page="/Barn/GruppeBarn" asp-route-id="@item.GruppeNavn">Børn i gruppen</a>
+                            <a asp-page="/Barn/GruppeBarn" asp-route-id="@item.GruppeId">Børn i gruppen</a>
                         </p>
                     </td>
-                    <td>
+@*                    <td>
                         <p>
                             <a asp-page="/Barn/CreateBarn" asp-route-id="@item.GruppeNavn">Tilføj barn</a>
                         </p>
@@ -47,7 +47,7 @@
                         <p>
                             <a asp-page="/Gruppe/DeleteBarn" asp-route-id="@item.GruppeNavn">Slet barn</a>
                         </p>
-                    </td>
+                    </td>*@
                 </tr>
             }
         }

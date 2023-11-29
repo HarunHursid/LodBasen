@@ -15,6 +15,11 @@
     </p>
 </form> *@
 <h4 style="color:red"> Liste af børn</h4>
+
+    <p>
+        <a asp-page="/Barn/CreateBarn">Tilføj barn</a>
+    </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -35,6 +40,16 @@
                     <td>  @item.Antal </td>
                     <td>  @item.Solgt </td>
                     <td>  @item.GruppeId </td>
+                    <td>
+                        <p>
+                            <a asp-page="/Barn/DeleteBarn" asp-route-id="@item.BarnId">Slet barn</a>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <a asp-page="/Barn/UpdateBarn" asp-route-id="@item.BarnId">Rediger barn</a>
+                        </p>
+                    </td>
                 </tr>
             }
         }

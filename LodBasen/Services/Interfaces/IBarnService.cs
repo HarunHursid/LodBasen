@@ -7,6 +7,6 @@ namespace LodBasen.Services.Interfaces
         IEnumerable<Barn> GetBørn(string search);
         IEnumerable<Barn> GetBørn();
         void AddBarn(Barn barn);
-        //Gruppe GetBørnByGruppeId(int id);
+        IEnumerable<Barn> GetBørnByGruppeId(int id);
     }
 }

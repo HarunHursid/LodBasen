@@ -1,0 +1,30 @@
+﻿@page
+@model LodBasen.Pages.Barn.GruppeBarnModel
+@{
+}
+
+<h4 style="color:red"> Liste af børn i gruppen</h4>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th> Navn </th>
+            <th> Antal </th>
+            <th> Solgte </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model.Børn != null)
+        {
+            @foreach (var item in Model.Børn)
+            {
+                <tr>
+                    <td>  @item.Navn </td>
+                    <td>  @item.Antal </td>
+                    <td>  @item.Solgt </td>
+                </tr>
+            }
+        }
+</table>
