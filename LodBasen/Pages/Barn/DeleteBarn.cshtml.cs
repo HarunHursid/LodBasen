@@ -1,12 +1,30 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using LodBasen.Services.Interfaces;
+using LodBasen.Models;
 
 namespace LodBasen.Pages.Barn
 {
     public class DeleteBarnModel : PageModel
     {
-        public void OnGet()
+        [BindProperty]
+        public Models.Barn barn { get; set; }
+
+        IBarnService barnService;
+
+        public DeleteBarnModel(IBarnService service)
         {
+            barnService = service;
+        }
+        public void OnGet(int id)
+        {
+            barn = barnService.GetBarnById(id);
+        }
+        public IActionResult OnPost()
+        {
+            barnService.DeleteBarn(barn);
+
+            return RedirectToPage("GetBarn");
         }
     }
 }
