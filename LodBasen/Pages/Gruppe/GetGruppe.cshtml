@@ -31,24 +31,24 @@
             {
                 <tr>
                     <td> 
-                        <p>
+                        
                         @item.GruppeNavn
-                        </p>
+                        
                     </td>
                     <td>
-                        <p>
+                        
                             <a asp-page="/Barn/GruppeBarn" asp-route-id="@item.GruppeId">Børn i gruppen</a>
-                        </p>
+                        
                     </td>
                     <td>
-                        <p>
+                        
                             <a asp-page="/Gruppe/UpdateGruppe" asp-route-id="@item.GruppeId">Rediger gruppe</a>
-                        </p>
+                        
                     </td>
                     <td>
-                        <p>
+                        
                             <a asp-page="/Gruppe/DeleteGruppe" asp-route-id="@item.GruppeId">Slet gruppe</a>
-                        </p>
+                        
                     </td>
                 </tr>
             }
