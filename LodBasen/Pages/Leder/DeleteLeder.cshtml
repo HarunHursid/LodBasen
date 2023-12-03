@@ -1,4 +1,27 @@
 ﻿@page
 @model LodBasen.Pages.Leder.DeleteLederModel
 @{
+    ViewData["Title"] = "Delete";
 }
+
+<h1>Delete</h1>
+<h3>Er du sikker?</h3>
+<div>
+    <hr />
+    <form method="post">
+        <dl class="row">
+
+            <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.leder.Navn)</dt>
+            <dd class="col-sm-10">  @Model.leder.Navn </dd>
+            <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.leder.Antal) </dt>
+            <dd class="col-sm-10"> @Model.leder.Antal </dd>
+            <dt class="col-sm-2">  @Html.DisplayNameFor(model => model.leder.Udleveret) </dt>
+            <dd class="col-sm-10"> @Model.leder.Udleveret  </dd>
+            <dt class="col-sm-2">  @Html.DisplayNameFor(model => model.leder.GruppeId) </dt>
+            <dd class="col-sm-10"> @Model.leder.GruppeId  </dd>
+        </dl>
+        <input type="hidden" asp-for="leder.LederId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

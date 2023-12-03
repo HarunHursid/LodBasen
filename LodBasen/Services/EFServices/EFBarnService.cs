@@ -2,8 +2,8 @@
 using LodBasen.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-namespace LodBasen.Services.EFServices
 
+namespace LodBasen.Services.EFServices
 {
     public class EFBarnService : IBarnService
     {
