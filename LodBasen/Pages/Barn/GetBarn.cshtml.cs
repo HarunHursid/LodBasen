@@ -9,7 +9,7 @@ namespace LodBasen.Pages.Barn
     public class GetBarnModel : PageModel
     {
         [BindProperty(SupportsGet = true)]
-        public string FilterCriteria { get; set; }
+        public string Search { get; set; }
         public IEnumerable<Models.Barn> Børn { get; set; }
 
         IBarnService barnService { get; set; }
@@ -19,9 +19,9 @@ namespace LodBasen.Pages.Barn
         }
         public void OnGet()
         {
-            if (!String.IsNullOrEmpty(FilterCriteria))
+            if (!String.IsNullOrEmpty(Search))
             {
-                Børn = barnService.GetBørn(FilterCriteria);
+                Børn = barnService.GetBørn(Search);
             }
             else
                 Børn = barnService.GetBørn();

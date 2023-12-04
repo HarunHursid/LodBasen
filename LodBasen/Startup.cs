@@ -20,6 +20,7 @@ namespace LodBasen
             services.AddDbContext<lodbasen_dk_db_lodbasenContext>();
             services.AddTransient<IBarnService, EFBarnService>();
             services.AddTransient<IGruppeService, EFGruppeService>();
+            services.AddTransient<ILederService, EFLederService>();
 
         }
 
