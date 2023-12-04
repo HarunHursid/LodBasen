@@ -1,7 +1,7 @@
 ﻿@page
 @model LodBasen.Pages.Leder.GetLederModel
 @{
-    ViewData["Title"] = "GetLeder";
+    ViewData["Title"] = "Leder";
 }
 <h1>Liste af ledere</h1>
 @* <p>
@@ -33,7 +33,7 @@
     </thead>
     <tbody>
 
-        @if (Model.Ledere != null)
+        @if (Model != null)
         {
             @foreach (var item in Model.Ledere)
             {
@@ -44,10 +44,10 @@
                     <td>  @item.GruppeId </td>
 
                     <td> 
-                        <a asp-page="Leder/DeleteLeder" asp-route-id="@item.LederId">Slet Leder</a>
+                        <a asp-page="/Leder/DeleteLeder" asp-route-id="@item.LederId">Slet Leder</a>
                     </td>
                     <td> 
-                        <a asp-page="Leder/UpdateLeder" asp-route-id="@item.LederId">Rediger Leder</a> 
+                        <a asp-page="/Leder/UpdateLeder" asp-route-id="@item.LederId">Rediger Leder</a> 
                     </td>
 
                 </tr>
