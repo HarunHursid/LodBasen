@@ -23,8 +23,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th> Id </th>
             <th> Gruppe Navn </th>
-            <th>tialdfas</th>
+            <th> Rediger/Slet </th>
         </tr>
        
     </thead>
@@ -35,6 +36,9 @@
             @foreach (var item in Model.Grupper)
             {
                 <tr>
+                    <td>
+                        @item.GruppeId
+                    </td>
                     <td> 
                         
                         <a asp-page="/Barn/GruppeBarn" asp-route-id="@item.GruppeId">@item.GruppeNavn</a>
