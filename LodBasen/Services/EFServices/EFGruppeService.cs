@@ -14,8 +14,18 @@ namespace LodBasen.Services.EFServices
         public void AddGruppe(Gruppe gruppe)
         {
             context.Grupper.Add(gruppe);
-            context.SaveChangesAsync();
+            context.SaveChanges();
         }
+
+        public void UpdateGruppe(Gruppe gruppe)
+        {
+            Gruppe g = context.Grupper.FirstOrDefault(x => x.GruppeId == gruppe.GruppeId);
+
+            g.GruppeNavn=gruppe.GruppeNavn;
+
+            context.SaveChanges();
+        }
+
         public Gruppe GetGruppeById(int id)
         {
                 return context.Grupper.Find(id);
@@ -25,7 +35,7 @@ namespace LodBasen.Services.EFServices
             if (gruppe != null)
             {
                 context.Grupper.Remove(gruppe);
-                context.SaveChanges();
+                context.SaveChangesAsync();
             }
         }
         public IEnumerable<Gruppe> GetGrupper(string search)

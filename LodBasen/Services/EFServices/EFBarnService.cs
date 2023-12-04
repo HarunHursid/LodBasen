@@ -28,7 +28,11 @@ namespace LodBasen.Services.EFServices
 
         public void UpdateBarn(Barn barn)
         {
-            context.Børn.Update(barn);
+            //context.Børn.Update(barn);
+
+            Barn b = context.Børn.FirstOrDefault(b => b.BarnId == barn.BarnId);
+
+            b.Navn = barn.Navn;
             context.SaveChanges();
         }
 
