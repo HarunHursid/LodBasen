@@ -3,8 +3,12 @@
 @{
     ViewData["Title"] = "Leder";
 }
+
 <h1>Liste af ledere</h1>
 
+
+
+<h1>Ledere</h1>
 
 @* <p>
     <a asp-page="/Leder/CreateLeder">Tilføj Leder</a>
@@ -16,10 +20,11 @@
         <a asp-page="/Leder/GetLeder">Back to Full List </a>
     </p>
 </form> *@
-<h4 style="color:red"> Liste af Ledere</h4>
 
 <p>
-    <a asp-page="/Leder/CreateLeder">Tilføj Leder</a>
+    <a asp-page="/Leder/CreateLeder">
+        <input type="button" class="btn btn-outline-primary" value="Tilføj leder" />
+    </a>
 </p>
 
 <table class="table">
@@ -29,8 +34,7 @@
             <th> Antal </th>
             <th> Udleveret </th>
             <th> Gruppe </th>
-            <th> Slet </th>
-            <th> Rediger </th>
+            <th> Rediger/Slet </th>
         </tr>
     </thead>
     <tbody>
@@ -46,10 +50,12 @@
                     <td>  @item.GruppeId </td>
 
                     <td> 
-                        <a asp-page="/Leder/DeleteLeder" asp-route-id="@item.LederId">Slet Leder</a>
-                    </td>
-                    <td> 
-                        <a asp-page="/Leder/UpdateLeder" asp-route-id="@item.LederId">Rediger Leder</a> 
+                        <a asp-page="/Leder/UpdateLeder" asp-route-id="@item.LederId">
+                             <submit class="btn btn-outline-dark"><i class="fa fa-pencil"></i></submit>
+                        </a> 
+                        <a asp-page="/Leder/DeleteLeder" asp-route-id="@item.LederId">
+                             <submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
+                        </a>
                     </td>
 
                 </tr>

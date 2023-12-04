@@ -7,7 +7,11 @@
 
 
 
+
 <h1>Liste af børn</h1>
+
+<h1>Børn</h1>
+
 @* <p>
     <a asp-page="/Barn/CreateBarn">Tilføj barn</a>
 </p>
@@ -18,10 +22,11 @@
         <a asp-page="/Barn/GetBarn">Back to Full List </a>
     </p>
 </form> *@
-<h4 style="color:red"> Liste af børn</h4>
 
     <p>
-        <a asp-page="/Barn/CreateBarn">Tilføj barn</a>
+        <a asp-page="/Barn/CreateBarn">
+            <input type="button" class="btn btn-outline-primary" value="Tilføj barn"/>
+        </a>
     </p>
 
 <table class="table">
@@ -45,14 +50,12 @@
                     <td>  @item.Solgt </td>
                     <td>  @item.GruppeId </td>
                     <td>
-                        <p>
-                            <a asp-page="/Barn/DeleteBarn" asp-route-id="@item.BarnId">Slet barn</a>
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <a asp-page="/Barn/UpdateBarn" asp-route-id="@item.BarnId">Rediger barn</a>
-                        </p>
+                        <a asp-page="/Barn/UpdateBarn" asp-route-id="@item.BarnId">
+                             <submit class="btn btn-outline-dark"><i class="fa fa-pencil"></i></submit>
+                        </a> 
+                        <a asp-page="/Barn/DeleteBarn" asp-route-id="@item.BarnId">
+                             <submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
+                        </a>
                     </td>
                 </tr>
             }
