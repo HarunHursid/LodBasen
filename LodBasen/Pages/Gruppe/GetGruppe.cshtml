@@ -12,16 +12,21 @@
         <a asp-page="/Gruppe/GetGruppe">Back to Full List </a>
     </p>
 </form> *@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <p>
-    <a asp-page="/Gruppe/CreateGruppe">Tilføj gruppe</a>
+    <a asp-page="/Gruppe/CreateGruppe">
+        <input type="button" class="btn btn-outline-primary" value="Tilføj gruppe"/>    
+    </a>
 </p>
 
 <table class="table">
     <thead>
         <tr>
             <th> Gruppe Navn </th>
+            <th>tialdfas</th>
         </tr>
+       
     </thead>
     <tbody>
 
@@ -32,23 +37,16 @@
                 <tr>
                     <td> 
                         
-                        @item.GruppeNavn
+                        <a asp-page="/Barn/GruppeBarn" asp-route-id="@item.GruppeId">@item.GruppeNavn</a>
                         
                     </td>
                     <td>
-                        
-                            <a asp-page="/Barn/GruppeBarn" asp-route-id="@item.GruppeId">Børn i gruppen</a>
-                        
-                    </td>
-                    <td>
-                        
-                            <a asp-page="/Gruppe/UpdateGruppe" asp-route-id="@item.GruppeId">Rediger gruppe</a>
-                        
-                    </td>
-                    <td>
-                        
-                            <a asp-page="/Gruppe/DeleteGruppe" asp-route-id="@item.GruppeId">Slet gruppe</a>
-                        
+                            <a asp-page="/Gruppe/UpdateGruppe" asp-route-id="@item.GruppeId">
+                                <submit class="btn btn-outline-dark"><i class="fa fa-pencil"></i></submit>
+                            </a> 
+                            <a asp-page="/Gruppe/DeleteGruppe" asp-route-id="@item.GruppeId">
+                                <submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
+                            </a>
                     </td>
                 </tr>
             }
