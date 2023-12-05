@@ -11,5 +11,8 @@ namespace LodBasen.Services.Interfaces
         void UpdateLeder(Leder leder);
         IEnumerable<Leder> GetLedereByGruppeId(int id);
         Leder GetLederById(int id);
+        Gruppe GetGruppeByGruppeNavn(string gruppeNavn);
+        List<string> GetAllGruppeNavn();
+
     }
 }

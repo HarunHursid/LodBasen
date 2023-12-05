@@ -32,24 +32,9 @@ namespace LodBasen.Services.EFServices
             context.SaveChanges();
         }
 
-        //public void UpdateLeder(Leder leder)
-        //{
-        //    var existingLeder = context.Ledere.Find(leder.LederId);
-        //    if (existingLeder != null)
-        //    {
-        //        //context.Entry(existingLeder).CurrentValues.SetValues(leder);
-        //        existingLeder.Navn = leder.Navn;
-        //        context.SaveChanges();
-        //    }
-        //}
+
         public IEnumerable<Leder> GetLedereByGruppeId(int id)
         {
-            //IEnumerable<Leder> listLedere = new IEnumerable<Leder>();
-            // listLedere = context.Set<Leder>().Where(l => l.GruppeId == id)
-            //      //.Include(l => l.Ledere)
-            //      .AsNoTracking()
-            //     .FirstOrDefault(l => l.GruppeId == id);
-            // return ledere;
 
             return this.context.Set<Leder>().Where(l => l.GruppeId == id).Include(g => g.Gruppe).AsNoTracking().ToList();
         }
@@ -66,6 +51,16 @@ namespace LodBasen.Services.EFServices
                 context.Ledere.Remove(leder);
                 context.SaveChanges();
             }
+        }
+        public List<string> GetAllGruppeNavn()
+        {
+            // Query unique 'GruppeNavn' values from the 'Gruppe' model
+            return context.Grupper.Select(g => g.GruppeNavn).Distinct().ToList();
+        }
+        public Gruppe GetGruppeByGruppeNavn(string gruppeNavn)
+        {
+            // Fetch the Gruppe entity based on GruppeNavn
+            return context.Grupper.FirstOrDefault(g => g.GruppeNavn == gruppeNavn);
         }
     }
 }

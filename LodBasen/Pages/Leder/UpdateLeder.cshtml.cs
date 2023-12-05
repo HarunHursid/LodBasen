@@ -1,6 +1,8 @@
 using LodBasen.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Diagnostics;
+using LodBasen.Models;
 
 namespace LodBasen.Pages.Leder
 {
@@ -9,9 +11,17 @@ namespace LodBasen.Pages.Leder
         [BindProperty]
         public Models.Leder leder { get; set; }
 
+        [BindProperty]
+        public List<string> GruppeNavnOptions { get; set; }
+
+        [BindProperty]
+        public string SelectedGruppeNavn { get; set; }
+
         public void OnGet(int id)
         {
             leder = LederService.GetLederById(id);
+
+            GruppeNavnOptions = LederService.GetAllGruppeNavn();
         }
 
         ILederService LederService;
@@ -26,6 +36,13 @@ namespace LodBasen.Pages.Leder
             {
                 return Page();
             }
+
+            if (!string.IsNullOrEmpty(SelectedGruppeNavn))
+            {
+                LodBasen.Models.Gruppe gruppe = LederService.GetGruppeByGruppeNavn(SelectedGruppeNavn);
+                leder.GruppeId = gruppe?.GruppeId ?? 0;
+            }
+
             LederService.UpdateLeder(leder);
             return RedirectToPage("GetLeder");
         }
