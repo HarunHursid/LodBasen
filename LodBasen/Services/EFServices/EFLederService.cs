@@ -18,7 +18,7 @@ namespace LodBasen.Services.EFServices
         }
         public IEnumerable<Leder> GetLedere()
         {
-            return context.Ledere;
+            return context.Ledere.Include(l => l.Gruppe).AsNoTracking().ToList(); ;
         }
         public void AddLeder(Leder leder)
         {
