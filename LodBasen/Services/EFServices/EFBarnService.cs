@@ -18,7 +18,8 @@ namespace LodBasen.Services.EFServices
         }
         public IEnumerable<Barn> GetBørn()
         {
-            return context.Børn;
+           // return context.Børn;
+            return context.Børn.Include(b => b.Gruppe).AsNoTracking().ToList(); ;
         }
         public void AddBarn(Barn barn)
         {
@@ -61,6 +62,11 @@ namespace LodBasen.Services.EFServices
         public Barn GetBarnById(int id)
         {
             return context.Børn.Find(id);
+            
+        }
+        public Gruppe GetGruppeById(int id)
+        {
+            return context.Grupper.FirstOrDefault(g => g.GruppeId == id);
         }
 
         public void DeleteBarn(Barn barn)

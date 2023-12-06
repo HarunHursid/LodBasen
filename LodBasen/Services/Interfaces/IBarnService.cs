@@ -12,5 +12,6 @@ namespace LodBasen.Services.Interfaces
         void UpdateBarn(Barn barn);
         IEnumerable<Barn> GetBørnByGruppeId(int id);
         Barn GetBarnById(int id);
+        Gruppe GetGruppeById(int id);
     }
 }
