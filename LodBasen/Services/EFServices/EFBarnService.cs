@@ -29,26 +29,11 @@ namespace LodBasen.Services.EFServices
 
         public void UpdateBarn(Barn barn)
         {
-            //context.Børn.Update(barn);
 
-            //Barn b = context.Børn.FirstOrDefault(b => b.BarnId == barn.BarnId);
-
-            //b.Navn = barn.Navn;
-            //context.SaveChanges();
             context.Børn.Update(barn);
             context.SaveChanges();
         }
 
-        //public void UpdateBarn(Barn barn)
-        //{
-        //    var existingBarn = context.Børn.Find(barn.BarnId);
-        //    if (existingBarn != null)
-        //    {
-        //        //context.Entry(existingBarn).CurrentValues.SetValues(barn);
-        //        existingBarn.Navn = barn.Navn;
-        //        context.SaveChanges();
-        //    }
-        //}
         public IEnumerable<Barn> GetBørnByGruppeId(int id)
         {
             //IEnumerable<Barn> listBørn = new IEnumerable<Barn>();
