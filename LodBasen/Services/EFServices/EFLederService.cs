@@ -18,7 +18,7 @@ namespace LodBasen.Services.EFServices
         }
         public IEnumerable<Leder> GetLedere()
         {
-            return context.Ledere.Include(l => l.Gruppe).AsNoTracking().ToList(); ;
+            return context.Ledere.Include(l => l.Gruppe).AsNoTracking().ToList();
         }
         public void AddLeder(Leder leder)
         {
@@ -41,7 +41,9 @@ namespace LodBasen.Services.EFServices
 
         public Leder GetLederById(int id)
         {
-            return context.Ledere.Find(id);
+            return context.Ledere
+                .Include(l => l.Gruppe)
+                .FirstOrDefault(l => l.LederId == id);
         }
 
         public void DeleteLeder(Leder leder)
@@ -54,12 +56,10 @@ namespace LodBasen.Services.EFServices
         }
         public List<string> GetAllGruppeNavn()
         {
-            // Query unique 'GruppeNavn' values from the 'Gruppe' model
             return context.Grupper.Select(g => g.GruppeNavn).Distinct().ToList();
         }
         public Gruppe GetGruppeByGruppeNavn(string gruppeNavn)
         {
-            // Fetch the Gruppe entity based on GruppeNavn
             return context.Grupper.FirstOrDefault(g => g.GruppeNavn == gruppeNavn);
         }
     }
