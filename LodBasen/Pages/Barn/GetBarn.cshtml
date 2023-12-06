@@ -33,8 +33,8 @@
     <thead>
         <tr>
             <th> Navn </th>
-            <th> Antal </th>
-            <th> Solgte </th>
+            <th> Udleveret Lodder</th>
+            <th> Solgte Lodder </th>
             <th> Gruppe </th>
         </tr>
     </thead>
@@ -48,7 +48,7 @@
                     <td>  @item.Navn </td>
                     <td>  @item.Antal </td>
                     <td>  @item.Solgt </td>
-                    <td>  @item.GruppeId </td>
+                    <td>  @item.Gruppe.GruppeNavn </td>
                     <td>
                         <a asp-page="/Barn/UpdateBarn" asp-route-id="@item.BarnId">
                              <submit class="btn btn-outline-dark"><i class="fa fa-pencil"></i></submit>
