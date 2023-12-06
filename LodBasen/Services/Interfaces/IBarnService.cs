@@ -13,5 +13,7 @@ namespace LodBasen.Services.Interfaces
         IEnumerable<Barn> GetBørnByGruppeId(int id);
         Barn GetBarnById(int id);
         Gruppe GetGruppeById(int id);
+        Gruppe GetGruppeByGruppeNavn(string gruppeNavn);
+        List<string> GetAllGruppeNavn();
     }
 }

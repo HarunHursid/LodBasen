@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using LodBasen.Services.Interfaces;
 using LodBasen.Models;
+using LodBasen.Services.EFServices;
 
 namespace LodBasen.Pages.Barn
 {
@@ -9,9 +10,18 @@ namespace LodBasen.Pages.Barn
     {
         [BindProperty]
         public Models.Barn barn { get; set; } = new Models.Barn();
+        [BindProperty]
+        public List<string> GruppeNavnOptions { get; set; }
+
+        [BindProperty]
+        public string SelectedGruppeNavn { get; set; }
+
         public void OnGet(int id)
         {
-            barn.BarnId = id;
+            barn = BarnService.GetBarnById(id);
+
+            GruppeNavnOptions = BarnService.GetAllGruppeNavn();
+            //barn.BarnId = id;
         }
         IBarnService BarnService;
         public CreateBarnModel(IBarnService service)
@@ -24,6 +34,10 @@ namespace LodBasen.Pages.Barn
             {
                 return Page();
             }
+
+            barn.Gruppe = BarnService.GetGruppeByGruppeNavn(SelectedGruppeNavn);
+            barn.Gruppe.GruppeNavn = SelectedGruppeNavn;
+
             BarnService.AddBarn(barn);
             return RedirectToPage("GetBarn");
         }
