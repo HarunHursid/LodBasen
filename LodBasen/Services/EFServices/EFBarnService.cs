@@ -29,24 +29,11 @@ namespace LodBasen.Services.EFServices
 
         public void UpdateBarn(Barn barn)
         {
-            //context.Børn.Update(barn);
 
-            Barn b = context.Børn.FirstOrDefault(b => b.BarnId == barn.BarnId);
-
-            b.Navn = barn.Navn;
+            context.Børn.Update(barn);
             context.SaveChanges();
         }
 
-        //public void UpdateBarn(Barn barn)
-        //{
-        //    var existingBarn = context.Børn.Find(barn.BarnId);
-        //    if (existingBarn != null)
-        //    {
-        //        //context.Entry(existingBarn).CurrentValues.SetValues(barn);
-        //        existingBarn.Navn = barn.Navn;
-        //        context.SaveChanges();
-        //    }
-        //}
         public IEnumerable<Barn> GetBørnByGruppeId(int id)
         {
             //IEnumerable<Barn> listBørn = new IEnumerable<Barn>();
@@ -61,8 +48,10 @@ namespace LodBasen.Services.EFServices
 
         public Barn GetBarnById(int id)
         {
-            return context.Børn.Find(id);
-            
+            return context.Børn
+                .Include(b => b.Gruppe)
+                .FirstOrDefault(b => b.BarnId == id);
+
         }
         public Gruppe GetGruppeById(int id)
         {
@@ -76,6 +65,14 @@ namespace LodBasen.Services.EFServices
                 context.Børn.Remove(barn);
                 context.SaveChanges();
             }
+        }
+        public List<string> GetAllGruppeNavn()
+        {
+            return context.Grupper.Select(g => g.GruppeNavn).Distinct().ToList();
+        }
+        public Gruppe GetGruppeByGruppeNavn(string gruppeNavn)
+        {
+            return context.Grupper.FirstOrDefault(g => g.GruppeNavn == gruppeNavn);
         }
     }
 }
