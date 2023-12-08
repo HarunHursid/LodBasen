@@ -1,0 +1,71 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.rounded-table {
+    border-radius: 7px; /* Juster radius efter behov */
+    overflow: hidden;
+}
+
+.t-head {
+    background: #0D6BF6;
+    color: #FFFFFF;
+}
+
+.th-item {
+    padding: 15px 10px !important;
+}
+
+.th-knap {
+    width: 2.5%;
+}
+
+.th-navn {
+}
+
+.th-gruppe {
+    width: 15%;
+}
+
+.t-border {
+    border-radius: 10%;
+}
+
+.table-container {
+    margin: auto;
+    width: 90%;
+}
+
+.a-link {
+    font-weight: 400 !important;
+    text-decoration: none;
+}
+
+.knap-tilføj-gruppe {
+    margin-bottom: 15px;
+}
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: rgba(13, 107, 246, 0.1);
+}
+
+.th-barn-navn {
+    width: 20%;
+}
+
+h1 {
+    display: inline-block
+}
+
+.headerh1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+hr {
+    background: #0D6BF6;
+}

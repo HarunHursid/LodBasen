@@ -3,61 +3,63 @@
 @{
     ViewData["Title"] = "GetBarn";
 }
+<link rel="stylesheet" href="~/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<div class="table-container">
+    <div class="headerh1">
+    <h1>Børn</h1>
 
-
-
-
-<h1>Liste af børn</h1>
-
-<h1>Børn</h1>
-
-@* <p>
-    <a asp-page="/Barn/CreateBarn">Tilføj barn</a>
-</p>
-<form>
-    <p>
-        Search: <input type="text" asp-for="FilterCriteria" />
-        <input type="submit" value="Filter" />
-        <a asp-page="/Barn/GetBarn">Back to Full List </a>
+    @* <p>
+        <a asp-page="/Barn/CreateBarn">Tilføj barn</a>
     </p>
-</form> *@
+    <form>
+        <p>
+            Search: <input type="text" asp-for="FilterCriteria" />
+            <input type="submit" value="Filter" />
+            <a asp-page="/Barn/GetBarn">Back to Full List </a>
+        </p>
+    </form> *@
 
-    <p>
-        <a asp-page="/Barn/CreateBarn">
-            <input type="button" class="btn btn-outline-primary" value="Tilføj barn"/>
-        </a>
-    </p>
+    <a asp-page="/Barn/CreateBarn">
+        <input type="button" class="btn btn-outline-primary" value="Tilføj barn"/>
+    </a>
+    </div>
+    <hr />
+    <table class="table table-striped rounded-table">
+        <thead class="t-head">
+            <tr>
+                    <th class="th-item th-barn-navn"> Navn </th>
+                <th class="th-item"> Udleveret Lodder</th>
+                <th class="th-item"> Solgte Lodder </th>
+                <th class="th-item"> Gruppe </th>
+                <th class="th-item th-knap"></th>
+                <th class="th-item th-knap"></th>
+            </tr>
+        </thead>
+        <tbody>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th> Navn </th>
-            <th> Udleveret Lodder</th>
-            <th> Solgte Lodder </th>
-            <th> Gruppe </th>
-        </tr>
-    </thead>
-    <tbody>
-
-        @if (Model.Børn != null)
-        {
-            @foreach (var item in Model.Børn)
+            @if (Model.Børn != null)
             {
-                <tr>
-                    <td>  @item.Navn </td>
-                    <td>  @item.Antal </td>
-                    <td>  @item.Solgt </td>
-                    <td>  @item.Gruppe.GruppeNavn </td>
-                    <td>
-                        <a asp-page="/Barn/UpdateBarn" asp-route-id="@item.BarnId">
-                             <submit class="btn btn-outline-dark"><i class="fa fa-pencil"></i></submit>
-                        </a> 
-                        <a asp-page="/Barn/DeleteBarn" asp-route-id="@item.BarnId">
-                             <submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
-                        </a>
-                    </td>
-                </tr>
+                @foreach (var item in Model.Børn)
+                {
+                    <tr>
+                        <td>  @item.Navn </td>
+                        <td>  @item.Antal </td>
+                        <td>  @item.Solgt </td>
+                        <td>  @item.Gruppe.GruppeNavn </td>
+                        <td>
+                            <a asp-page="/Barn/UpdateBarn" asp-route-id="@item.BarnId">
+                                 <submit class="btn btn-outline-dark"><i class="fa fa-pencil"></i></submit>
+                            </a> 
+                        </td>
+                        <td>
+                            <a asp-page="/Barn/DeleteBarn" asp-route-id="@item.BarnId">
+                                <submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
+                            </a>
+                        </td>
+                    </tr>
+                }
             }
-        }
-</table>
+    </table>
+</div>
