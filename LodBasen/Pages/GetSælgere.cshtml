@@ -1,0 +1,28 @@
+﻿@page
+@model LodBasen.Pages.GetSælgereModel
+@{
+    ViewData["Title"] = "GetSælgere";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th> AdminID </th>
+            <th> LederID </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model != null)
+        {
+            @foreach (var item in Model.Sælgere)
+            {
+                <tr>
+                   @* <td>  @item.SælgerId </td>*@
+                    <td>  @item.AdminId </td>
+                    <td>  @item.LederId </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
