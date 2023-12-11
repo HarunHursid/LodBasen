@@ -1,58 +1,66 @@
 ﻿@page
 @model LodBasen.Pages.Gruppe.GetGruppeModel
 @{
-	ViewData["Title"] = "GetGruppe";
+    ViewData["Title"] = "GetGruppe";
 }
-<h1>Grupper</h1>
 
-@* <form>
-    <p>
-        Search: <input type="text" asp-for="Search" />
-        <input type="submit" value="Filter" />
-        <a asp-page="/Gruppe/GetGruppe">Back to Full List </a>
-    </p>
-</form> *@
+<link rel="stylesheet" href="~/css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<p>
+<div class="table-container">
+    <div class="headerh1">
+    <h1>Grupper</h1>
+
+@*     <form>
+    <p>
+    Search: <input type="text" asp-for="Search" />
+    <input type="submit" value="Filter" />
+    <a asp-page="/Gruppe/GetGruppe">Back to Full List </a>
+    </p>
+    </form> *@
+
     <a asp-page="/Gruppe/CreateGruppe">
-        <input type="button" class="btn btn-outline-primary" value="Tilføj gruppe"/>    
+        <input type="button" class="btn btn-outline-primary" value="Tilføj gruppe" />
     </a>
-</p>
+    </div>
+    <hr />
+    <table class="table table-striped rounded-table">
+        <thead class="t-head">
+            <tr>
+                <th class="th-item th-gruppe">Nummer</th>
+                <th class="th-item th-navn">Navn</th>
+                <th class="th-item th-knap"></th>
+                <th class="th-item th-knap"></th>
+            </tr>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th> Id </th>
-            <th> Gruppe Navn </th>
-            <th> Rediger/Slet </th>
-        </tr>
-       
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
 
-        @if (Model != null)
-        {
-            @foreach (var item in Model.Grupper)
+            @if (Model != null)
             {
-                <tr>
-                    <td>
-                        @item.GruppeId
-                    </td>
-                    <td> 
-                        
-                        <a asp-page="/Barn/GruppeBarn" asp-route-id="@item.GruppeId">@item.GruppeNavn</a>
-                        
-                    </td>
-                    <td>
+                @foreach (var item in Model.Grupper)
+                {
+                    <tr>
+                        <td class="td-id">
+                            @item.GruppeId
+                        </td>
+                        <td>
+                            <a class="a-link" asp-page="/Barn/GruppeBarn" asp-route-id="@item.GruppeId">@item.GruppeNavn</a>
+                        </td>
+                        <td>
                             <a asp-page="/Gruppe/UpdateGruppe" asp-route-id="@item.GruppeId">
                                 <submit class="btn btn-outline-dark"><i class="fa fa-pencil"></i></submit>
-                            </a> 
+                            </a>
+
+                        </td>
+                        <td>
                             <a asp-page="/Gruppe/DeleteGruppe" asp-route-id="@item.GruppeId">
                                 <submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
                             </a>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                }
             }
-        }
-</table>
+        </tbody>
+    </table>
+</div>
