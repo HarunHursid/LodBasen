@@ -3,14 +3,14 @@
 @{
     ViewData["Title"] = "GetSælgere";
 }
-<h1> Overførsler </h1>
+<h1> Sælgere </h1>
 
 <table class="table">
     <thead>
         <tr>
             <th> Admin ID </th>
             <th> Admin Navn</th>
-            <th> Antal Lodsedler </th>
+           
         </tr>
     </thead>
     <tbody>
@@ -23,7 +23,6 @@
                     @* <td>  @item.SælgerId </td>*@
                     <td>  @item.AdminId </td>
                     <td> @item.Admin.Navn</td>
-                    <td> @item.Admin.Antal </td>
                 </tr>
             }
 
@@ -34,7 +33,7 @@
         <tr>
             <th> Leder ID </th>
             <th> Leder Navn</th>
-            <th> Antal Lodsedler</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -46,8 +45,6 @@
                 <tr>
                     <td>  @item.LederId </td>
                     <td> @item.Leder.Navn </td>
-                    <td> @item.Leder.Antal </td>
-
                 </tr>
             }
         }
