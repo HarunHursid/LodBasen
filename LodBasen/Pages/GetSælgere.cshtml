@@ -3,24 +3,51 @@
 @{
     ViewData["Title"] = "GetSælgere";
 }
+<h1> Overførsler </h1>
 
 <table class="table">
     <thead>
         <tr>
-            <th> AdminID </th>
-            <th> LederID </th>
+            <th> Admin ID </th>
+            <th> Admin Navn</th>
+            <th> Antal Lodsedler </th>
         </tr>
     </thead>
     <tbody>
 
         @if (Model != null)
         {
-            @foreach (var item in Model.Sælgere)
+            @foreach (var item in Model.Sælgere.Where(item => item.AdminId != null))
             {
                 <tr>
-                   @* <td>  @item.SælgerId </td>*@
+                    @* <td>  @item.SælgerId </td>*@
                     <td>  @item.AdminId </td>
+                    <td> @item.Admin.Navn</td>
+                    <td> @item.Admin.Antal </td>
+                </tr>
+            }
+
+        }
+
+    </tbody>
+    <thead>
+        <tr>
+            <th> Leder ID </th>
+            <th> Leder Navn</th>
+            <th> Antal Lodsedler</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model != null)
+        {
+            @foreach (var item in Model.Sælgere.Where(item => item.LederId != null))
+            {
+                <tr>
                     <td>  @item.LederId </td>
+                    <td> @item.Leder.Navn </td>
+                    <td> @item.Leder.Antal </td>
+
                 </tr>
             }
         }

@@ -17,9 +17,10 @@ namespace LodBasen.Services.EFServices
 
         public IEnumerable<Sælger> GetSælgere()
         {
-            //return context.Sælgere.Include(a => a.Admin).Include(l => l.Leder);
-            return context.Sælgere.Include(a => a.Admin).Include(l => l.Leder);
+            Sælgere = context.Sælgere.Include(a => a.Admin).Include(l => l.Leder);
+            return Sælgere;
         }
+
 
         //public string GetSalesPersonNameById(int sælgerId)
         //{
