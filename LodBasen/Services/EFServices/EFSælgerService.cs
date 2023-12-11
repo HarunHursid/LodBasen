@@ -1,7 +1,11 @@
 ﻿using LodBasen.Models;
+using LodBasen.Pages;
 using LodBasen.Services.Interfaces;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore;
+using NuGet.Common;
 using System.Linq;
 
 namespace LodBasen.Services.EFServices
@@ -15,29 +19,40 @@ namespace LodBasen.Services.EFServices
         }
         public IEnumerable<Sælger> Sælgere { get; set; }
 
+        //public void AddSælger() 
+        //{
+        //    context.Sælgere.Add();
+        //    context.SaveChanges();
+        //}
+
         public IEnumerable<Sælger> GetSælgere()
         {
             Sælgere = context.Sælgere.Include(a => a.Admin).Include(l => l.Leder);
             return Sælgere;
         }
 
+        public Sælger GetSælgerById(int id)
+        {
+            Sælger sælger = (Sælger)context.Sælgere.Include(a => a.Admin).Where(s => s.AdminId == id).Include(l => l.Leder).Where(l => l.LederId == id);
+            return sælger;
+        }
 
-        //public string GetSalesPersonNameById(int sælgerId)
-        //{
-        //    var sælger = context.Sælgere
-        //        .Include(sp => sp.Admin)
-        //        .Include(sp => sp.Leder)
-        //        .FirstOrDefault(sp => sp.SælgerId == sælgerId);
-
-        //    return sælger?.Admin.Navn + sælger?.Leder.Navn;
-        //}
-
-        //public String GetSælgerNameById(int sælgerId)
+        //public String GetSælgerNamebyId(int Id)
         //{
         //    {
-        //        String sælgernavn = Convert.ToString(context.Sælgere.Include(a => a.Admin.Navn).Where<Sælger> (s => s.AdminId != null));
+        //        foreach (var sælger in Sælgere)
+        //        {
+        //            if (Id == sælger.AdminId)
+        //            {
+        //                return sælger.Admin.Navn;
+        //            }
+        //            else if (Id == sælger.LederId)
+        //            {
+        //                return sælger.Leder.Navn;
+        //            }
+        //        }
         //    }
-
+        //    return null;
         //}
 
     }

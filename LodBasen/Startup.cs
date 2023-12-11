@@ -22,7 +22,8 @@ namespace LodBasen
             services.AddTransient<IGruppeService, EFGruppeService>();
             services.AddTransient<ILederService, EFLederService>();
             services.AddTransient<ISælgerService, EFSælgerService>();
-            services.AddTransient<IModtagerService, EFModtagerService>();    
+            services.AddTransient<IModtagerService, EFModtagerService>();   
+            services.AddTransient<ISalgService, EFSalgService>();   
 
         }
 

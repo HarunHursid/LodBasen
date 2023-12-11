@@ -9,8 +9,8 @@ namespace LodBasen.Services.EFServices
     {
         public lodbasen_dk_db_lodbasenContext context;
 
-        public EFSalgService(lodbasen_dk_db_lodbasenContext service) 
-        { 
+        public EFSalgService(lodbasen_dk_db_lodbasenContext service)
+        {
             context = service;
         }
 
@@ -20,29 +20,38 @@ namespace LodBasen.Services.EFServices
 
         public IEnumerable<Modtager> Modtagere { get; set; }
 
-        public int GetAntalFromAdmin() 
+        public IEnumerable<Lodsalg> Lodsalgssamling { get; set; }
+
+        public IEnumerable<Lodsalg> GetLodsalgssamling()
         {
-            return Convert.ToInt32(context.Sælgere.Include(a => a.Admin.Antal).AsNoTracking());
+            Lodsalgssamling = context.Lodsalgssamling.Include(m => m.Modtager.Barn).Include(m => m.Modtager.Leder);
+            return Lodsalgssamling;
         }
 
-        public int GetAntalFromLeder() 
+        public void AddLodsalg(object lodsalg)
         {
-            return Convert.ToInt32(context.Sælgere.Include(l => l.Leder.Antal).AsNoTracking());
+            throw new NotImplementedException();
         }
 
-        public int GetAntalFromLodseddel() 
+        public int GetAntalFromAdmin()
         {
-            return Convert.ToInt32(context.Lodsedler.Include(a => a.Antal).AsNoTracking());
+            return Convert.ToInt32(context.Sælgere.Include(a => a.Admin).AsNoTracking());
+        }
+
+        public int GetAntalFromLeder()
+        {
+            return Convert.ToInt32(context.Sælgere.Include(l => l.Leder).AsNoTracking());
+        }
+
+        public int GetAntalFromLodseddel()
+        {
+            return Convert.ToInt32(context.Lodsedler.AsNoTracking());
         }
 
         //public void Overførsel(Sælger sælger, Modtager modtager, int antal)
         //{
-        //    if () 
-        //    { 
-            
-        //    }
+
+
         //}
-
-
     }
 }
