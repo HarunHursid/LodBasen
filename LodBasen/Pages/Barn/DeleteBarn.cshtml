@@ -22,6 +22,8 @@
         </dl>
         <input type="hidden" asp-for="barn.BarnId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <a asp-page="/Barn/GetBarn">
+            <input type="button" class="btn btn-outline-primary" value="Tilbage" />
+        </a>
     </form>
 </div>

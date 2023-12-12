@@ -63,3 +63,15 @@
             }
     </table>
 </div>
+<div class="pagination-container">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            @for (int i = 1; i <= Model.Børn.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.Børn.PageIndex ? "active" : "")">
+                    <a class="page-link" asp-page="./GetBarn" asp-route-pageIndex="@i">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>

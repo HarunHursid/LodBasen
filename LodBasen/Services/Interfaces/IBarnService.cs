@@ -5,6 +5,8 @@ namespace LodBasen.Services.Interfaces
 {
     public interface IBarnService
     {
+        IQueryable<Barn> GetBørnQuery(string search);
+        IQueryable<Barn> GetBørnQuery();
         IEnumerable<Barn> GetBørn(string search);
         IEnumerable<Barn> GetBørn();
         void DeleteBarn(Barn barn);
