@@ -27,8 +27,8 @@
     <table class="table table-striped rounded-table">
         <thead class="t-head">
             <tr>
-                <th class="th-item th-gruppe">Nummer</th>
-                <th class="th-item th-navn">Navn</th>
+                <th class="th-item th-gruppe">Navn</th>
+                <th class="th-item th-navn">Nummer</th>
                 <th class="th-item th-knap"></th>
                 <th class="th-item th-knap"></th>
             </tr>
@@ -41,11 +41,11 @@
                 @foreach (var item in Model.Grupper)
                 {
                     <tr>
-                        <td class="td-id">
-                            @item.GruppeId
-                        </td>
                         <td>
                             <a class="a-link" asp-page="/Barn/GruppeBarn" asp-route-id="@item.GruppeId">@item.GruppeNavn</a>
+                        </td>
+                        <td class="td-id">
+                            @item.GruppeId
                         </td>
                         <td>
                             <a asp-page="/Gruppe/UpdateGruppe" asp-route-id="@item.GruppeId">
