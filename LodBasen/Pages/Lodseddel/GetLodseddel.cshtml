@@ -1,0 +1,34 @@
+﻿@page
+@model LodBasen.Pages.Lodseddel.GetLodseddelModel
+@{
+    ViewData["Title"] = "GetLodsedler";
+}
+
+
+<h1> Lodsedler </h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th> Lodseddel ID </th>
+            <th> Antal lodsedler</th>
+            <th> Solgte lodsedler</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model != null)
+        {
+            @foreach (var item in Model.Lodsedler)
+            {
+                <tr>
+                    <td> @item.LodseddelId</td>
+                    <td> @item.Antal</td>
+                    <td> @item.Solgt</td>
+                </tr>
+            }
+
+        }
+
+    </tbody>
+</table>

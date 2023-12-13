@@ -1,0 +1,63 @@
+﻿@page
+@model LodBasen.Pages.Salg.GetLodsalgModel
+@{
+    ViewData["Title"] = "GetLodsalgssamling";
+}
+
+<h1> Overførsler </h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th> Overførsel ID </th>
+            <th> Modtager Navn</th>
+            <th> Antal lodsedler</th>
+            <th> Modtaget fra</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model != null)
+        {
+            @foreach (var item in Model.Lodsalgssamling)
+            {
+                <tr>
+                    <td> @item.LodsalgsId </td>
+                    <td> @item.Modtager.Leder.Navn</td>
+                    <td> @item.Modtager.Leder.Antal</td>
+                    <td> @item.Sælger.Admin.Navn</td>
+                </tr>
+            }
+
+        }
+
+    </tbody>
+    <thead>
+        <tr>
+            <th> Overførsel ID </th>
+            <th> Modtager Navn</th>
+            <th> Antal lodsedler</th>
+            <th> Modtaget fra</th>
+
+        </tr>
+    </thead>
+    <tbody> 
+           @if (Model != null)
+        {
+            @foreach (var item in Model.Lodsalgssamling)
+            {
+                <tr>
+                    <td> @item.LodsalgsId </td>
+                    <td> @item.Modtager.Barn.Navn</td>
+                    <td> @item.Modtager.Barn.Antal</td>
+                    <td> @item.Sælger</td>
+                </tr>
+            }
+
+        }
+
+    </tbody>
+
+
+</table>

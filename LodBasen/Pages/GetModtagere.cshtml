@@ -1,0 +1,51 @@
+﻿@page
+@model LodBasen.Pages.GetModtagereModel
+@{
+    ViewData["Title"] = "GetModtagere";
+}
+<h1> Modtagere </h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th> Leder ID </th>
+            <th> Leder Navn</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model != null)
+        {
+            @foreach (var item in Model.Modtagere.Where(item => item.LederId != null))
+            {
+                <tr>
+                    <td>  @item.LederId </td>
+                    <td> @item.Leder.Navn</td>
+                </tr>
+            }
+
+        }
+
+    </tbody>
+    <thead>
+        <tr>
+            <th> Barn ID </th>
+            <th> Barn Navn</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model != null)
+        {
+            @foreach (var item in Model.Modtagere.Where(item => item.BarnId != null))
+            {
+                <tr>
+                    <td>  @item.BarnId </td>
+                    <td> @item.Barn.Navn </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
