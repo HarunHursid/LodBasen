@@ -74,5 +74,17 @@ namespace LodBasen.Services.EFServices
         {
             return context.Grupper.FirstOrDefault(g => g.GruppeNavn == gruppeNavn);
         }
+        public IQueryable<Barn> GetBørnQuery(string search)
+        {
+            // Implement your search logic and return IQueryable
+            // For example:
+            return context.Børn.Where(b => b.Navn.Contains(search)).AsQueryable();
+        }
+
+        public IQueryable<Barn> GetBørnQuery()
+        {
+            // Implement logic to return all Børn as IQueryable
+            return context.Børn.AsQueryable();
+        }
     }
 }
