@@ -3,37 +3,38 @@
 @{
 }
 
-   <h4>@Model.GruppeNavn</h4>
+<link rel="stylesheet" href="~/css/style.css">
 
+<div class="table-container">
+    <h1>@Model.GruppeNavn</h1>
 
+    <hr />
 
+    <table class="table table-striped rounded-table">
+        <thead class="t-head">
+            <tr>
+                <th class="th-item"> Navn </th>
+                <th class="th-item"> Udleveret Lodder </th>
+                <th class="th-item"> Solgte Lodder </th>
+            </tr>
+        </thead>
+        <tbody>
 
-
-
-<table class="table">
-    <thead>
-        <tr>
-            <th> Navn </th>
-            <th> Udleveret Lodder </th>
-            <th> Solgte Lodder </th>
-        </tr>
-    </thead>
-    <tbody>
-
-        @if (Model.Børn != null)
-        {
-
-            @foreach (var item in Model.Børn)
+            @if (Model.Børn != null)
             {
+
+                @foreach (var item in Model.Børn)
+                {
                 
-                <tr>
+                    <tr>
                     
                    
                     
-                    <td>  @item.Navn </td>
-                    <td>  @item.Antal </td>
-                    <td>  @item.Solgt </td>
-                </tr>
+                        <td>  @item.Navn </td>
+                        <td>  @item.Antal </td>
+                        <td>  @item.Solgt </td>
+                    </tr>
+                }
             }
-        }
-</table>
+    </table>
+</div>
