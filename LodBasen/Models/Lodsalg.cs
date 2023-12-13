@@ -11,6 +11,14 @@ namespace LodBasen.Models;
 [Table("Lodsalg")]
 public partial class Lodsalg
 {
+    public Lodsalg(int sælgerId, int modtagerId, int lodseddelId)
+    {
+        Sælger.SælgerId = sælgerId;
+        Modtager.ModtagerId = modtagerId;
+        Lodseddel.LodseddelId = lodseddelId;
+
+    }
+
     [Key]
     [Column("Lodsalgs_ID")]
     public int LodsalgsId { get; set; }

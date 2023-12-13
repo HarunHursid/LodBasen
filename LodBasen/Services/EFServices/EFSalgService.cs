@@ -28,30 +28,99 @@ namespace LodBasen.Services.EFServices
             return Lodsalgssamling;
         }
 
-        public void AddLodsalg(object lodsalg)
+        public void AddLodsalg()
         {
             throw new NotImplementedException();
         }
 
-        public int GetAntalFromAdmin()
+        public int GetAntalFromAdmin(int? adminId)
         {
-            return Convert.ToInt32(context.Sælgere.Include(a => a.Admin).AsNoTracking());
+            return Convert.ToInt32(context.Sælgere.Include(a => a.Admin.Antal).Where(a => a.Admin.AdminId.Equals(adminId)).AsNoTracking());
+            
         }
 
-        public int GetAntalFromLeder()
+        public int GetAntalFromLeder(int? lederId)
         {
-            return Convert.ToInt32(context.Sælgere.Include(l => l.Leder).AsNoTracking());
+            return Convert.ToInt32(context.Sælgere.Include(l => l.Leder.Antal).Where(l => l.Leder.LederId.Equals(lederId)).AsNoTracking());
         }
 
-        public int GetAntalFromLodseddel()
+        public int GetAntalFromLodseddel(int? lodseddelId)
         {
-            return Convert.ToInt32(context.Lodsedler.AsNoTracking());
+            return Convert.ToInt32(context.Lodsedler.Include(l => l.Antal).Where(l => l.LodseddelId.Equals(lodseddelId)).AsNoTracking());
         }
 
-        //public void Overførsel(Sælger sælger, Modtager modtager, int antal)
-        //{
+        public Lodseddel GetLodseddelById(int lodseddelId)
+        {
+            return (Lodseddel)context.Set<Lodseddel>().Where(l => l.LodseddelId == lodseddelId);
+        }
 
+        public void AddOverførsel(Sælger sælger, Modtager modtager, Lodseddel lodseddel, int antal)
+        {
+            Lodsalg lodsalg = new Lodsalg(sælger.SælgerId, modtager.ModtagerId, lodseddel.LodseddelId);
+            context.Lodsalgssamling.AddAsync(lodsalg);
+            context.SaveChanges();
 
-        //}
+            if (sælger.AdminId !=null && modtager.LederId != null)
+            {
+                if(GetAntalFromAdmin(sælger.AdminId) >= antal && (GetAntalFromAdmin(sælger.AdminId) - antal)>0) 
+                {
+                    sælger.Admin.Antal = GetAntalFromAdmin(sælger.AdminId) - antal;
+                    sælger.Admin.Udleveret += antal;
+                    context.Admins.Update(sælger.Admin);
+                    context.SaveChanges();
+                    modtager.Leder.Antal = antal;
+                    context.Ledere.Update(modtager.Leder);
+                    context.SaveChanges();
+                    //lodseddel.Antal -= antal;
+                    
+                }
+            }
+            else if (sælger.AdminId !=null && modtager.BarnId != null)
+            {
+                if (GetAntalFromAdmin(sælger.AdminId) >= antal && (GetAntalFromAdmin(sælger.AdminId) - antal) > 0)
+                {
+                    sælger.Admin.Antal = GetAntalFromAdmin(sælger.AdminId) - antal;
+                    sælger.Admin.Udleveret += antal;
+                    context.Admins.Update(sælger.Admin);
+                    context.SaveChanges();
+                    modtager.Barn.Antal = antal;
+                    context.Børn.Update(modtager.Barn);
+                    context.SaveChanges();
+                }
+            }
+            else if (sælger.LederId != null && modtager.BarnId != null)
+            {
+                if (GetAntalFromAdmin(sælger.LederId) >= antal && (GetAntalFromLeder(sælger.LederId) - antal) > 0)
+                {
+                    sælger.Leder.Antal = GetAntalFromLeder(sælger.LederId) - antal;
+                    sælger.Leder.Udleveret += antal;
+                    context.Ledere.Update(sælger.Leder);
+                    context.SaveChanges();
+                    modtager.Barn.Antal = antal;
+                    context.Børn.Update(modtager.Barn);
+                    context.SaveChanges();
+                    //lodseddel.Antal -= antal;
+                }
+            }
+        }
+
+        public void AfslutOverførsel(Lodsalg lodsalg)
+        {
+            if(lodsalg.Modtager.LederId != null && lodsalg.Sælger.AdminId != null) 
+            { 
+
+            } 
+            if(lodsalg.Modtager.BarnId != null && lodsalg.Sælger.LederId != null)
+            {
+
+            }
+            if(lodsalg.Modtager.BarnId !=null && lodsalg.Sælger.AdminId != null)
+            {
+
+            }
+            
+        }
+
+       
     }
 }

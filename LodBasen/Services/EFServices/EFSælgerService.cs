@@ -27,14 +27,18 @@ namespace LodBasen.Services.EFServices
 
         public IEnumerable<Sælger> GetSælgere()
         {
-            Sælgere = context.Sælgere.Include(a => a.Admin).Include(l => l.Leder);
-            return Sælgere;
+            return Sælgere = context.Sælgere.Include(a => a.Admin).Include(l => l.Leder).AsNoTracking().ToList();
+
         }
 
-        public Sælger GetSælgerById(int id)
+        public Sælger GetSælgerIdByAdmin(int adminId) 
         {
-            Sælger sælger = (Sælger)context.Sælgere.Include(a => a.Admin).Where(s => s.AdminId == id).Include(l => l.Leder).Where(l => l.LederId == id);
-            return sælger;
+            return (Sælger)context.Set<Sælger>().Where(a => a.AdminId == adminId).Include(a => a.Admin);
+        }
+
+        public Sælger GetSælgerIdByLeder(int lederId)
+        {
+            return (Sælger)context.Set<Sælger>().Where(l => l.LederId == lederId).Include(l => l.Leder);
         }
 
         //public String GetSælgerNamebyId(int Id)
