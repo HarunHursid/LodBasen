@@ -18,7 +18,9 @@
         </dl>
         <input type="hidden" asp-for="Gruppe.GruppeId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <a asp-page="/Gruppe/GetGruppe">
+            <input type="button" class="btn btn-outline-primary" value="Tilbage" />
+        </a>
     </form>
 </div>
 
