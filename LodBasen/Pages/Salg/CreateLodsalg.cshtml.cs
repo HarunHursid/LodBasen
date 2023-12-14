@@ -3,36 +3,41 @@ using LodBasen.Services.EFServices;
 using LodBasen.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace LodBasen.Pages.Salg
-{
+
+    namespace LodBasen.Pages.Salg
+    {
     public class CreateLodsalgModel : PageModel
     {
-        [BindProperty(SupportsGet = true)]
+        private readonly ISalgService _salgService;
 
-        public string Search { get; set; }
-        public IEnumerable<Models.Lodsalg> Lodsalgssamling { get; set; }
+        public CreateLodsalgModel(ISalgService salgService)
+        {
+            _salgService = salgService;
+        }
 
-        ISalgService SalgService { get; set; }
-        //public GetLodsalgModel(ISalgService service)
-        //{
-        //    SalgService = service;
-        //}
+        [BindProperty]
+        public int SelectedSælgerId { get; set; }
 
-        //public void OnGet(int id)
-        //{
-    
-        //}
+        [BindProperty]
+        public int SelectedModtagerId { get; set; }
 
-        //public IActionResult OnPost()
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return Page();
-        //    }
+        [BindProperty]
+        public int SelectedLodseddelId { get; set; }
 
-        //    SalgService.AddLodsalg(lodsalg);
-        //    return RedirectToPage("GetLodsalg");
-        //}
+        [BindProperty]
+        public int Antal { get; set; }
+
+        public IActionResult OnPost()
+        {
+
+            _salgService.AddOverførsel(SelectedSælgerId, SelectedModtagerId, SelectedLodseddelId, Antal);
+
+
+
+
+            return RedirectToPage("/SuccessPage");
+        }
     }
 }

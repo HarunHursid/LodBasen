@@ -41,23 +41,7 @@ namespace LodBasen.Services.EFServices
             return (Sælger)context.Set<Sælger>().Where(l => l.LederId == lederId).Include(l => l.Leder);
         }
 
-        //public String GetSælgerNamebyId(int Id)
-        //{
-        //    {
-        //        foreach (var sælger in Sælgere)
-        //        {
-        //            if (Id == sælger.AdminId)
-        //            {
-        //                return sælger.Admin.Navn;
-        //            }
-        //            else if (Id == sælger.LederId)
-        //            {
-        //                return sælger.Leder.Navn;
-        //            }
-        //        }
-        //    }
-        //    return null;
-        //}
+        
 
     }
 }

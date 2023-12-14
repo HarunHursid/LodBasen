@@ -28,7 +28,7 @@ namespace LodBasen.Services.EFServices
             return Lodsalgssamling;
         }
 
-        public void AddLodsalg()
+        public void AddLodsalg(Lodsalg lodsalg)
         {
             throw new NotImplementedException();
         }
@@ -104,23 +104,41 @@ namespace LodBasen.Services.EFServices
             }
         }
 
-        public void AfslutOverførsel(Lodsalg lodsalg)
+        public String GetSælgerNamebyId(int Id)
         {
-            if(lodsalg.Modtager.LederId != null && lodsalg.Sælger.AdminId != null) 
-            { 
-
-            } 
-            if(lodsalg.Modtager.BarnId != null && lodsalg.Sælger.LederId != null)
             {
-
+                foreach (var sælger in Sælgere)
+                {
+                    if (Id == sælger.AdminId)
+                    {
+                        return sælger.Admin.Navn;
+                    }
+                    else if (Id == sælger.LederId)
+                    {
+                        return sælger.Leder.Navn;
+                    }
+                }
             }
-            if(lodsalg.Modtager.BarnId !=null && lodsalg.Sælger.AdminId != null)
-            {
-
-            }
-            
+            return null;
         }
+        public String GetModtagerNamebyId(int Id)
+        {
+            {
+                foreach (var modtager in Modtagere)
+                {
+                    if (Id == modtager.LederId)
+                    {
+                        return modtager.Leder.Navn;
+                    }
+                    else if (Id == modtager.BarnId)
+                    {
+                        return modtager.Barn.Navn;
+                    }
+                }
+            }
+            return null;
+        }
+        
 
-       
     }
 }
