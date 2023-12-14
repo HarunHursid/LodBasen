@@ -15,6 +15,5 @@ namespace LodBasen.Services.Interfaces
         public void AddOverførsel(Sælger sælger, Modtager modtager, Lodseddel lodsedel, int Antal);
 
 
-        
     }
 }

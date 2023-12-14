@@ -167,30 +167,60 @@ namespace LodBasen.Services.EFServices
             }
         }
 
-        public void AfslutOverførsel(int lodsalgsId)
+        public void AfslutOverførsel(int lodsalgsId, int solgt)
         {
             Lodsalg lodsalg = (Lodsalg)context.Lodsalgssamling.Where(l => l.LodsalgsId.Equals(lodsalgsId));
+            Modtager modtager = (Modtager)context.Modtagere.Where(m => m.ModtagerId.Equals(lodsalg.ModtagerId));
+            Sælger sælger = (Sælger)context.Sælgere.Where(s => s.SælgerId.Equals(lodsalg.SælgerId));
+            Lodseddel lodseddel = (Lodseddel)context.Lodsedler.Where(l => l.LodseddelId.Equals(lodsalg.LodseddelId));
+            Admin Admin = (Admin)context.Admins.Where(a => a.AdminId.Equals(lodsalg.Sælger.AdminId));
+            Leder Leder = (Leder)context.Ledere.Where(l => l.LederId.Equals(lodsalg.Sælger.LederId));
+            Barn barn = (Barn)context.Børn.Where(b => b.BarnId.Equals(lodsalg.Modtager.BarnId));
+
             if (lodsalg != null)
             {
-                if (lodsalg.Modtager.LederId != null && lodsalg.Sælger.AdminId != null)
+                if (modtager.LederId != null && sælger.AdminId != null)
                 {
-                    if (lodsalg.Modtager.Leder.Udleveret == 0)
+                    //kan først afslutte lodsalg hvis lederen ikke har nogen udleverede lodsedler til børn
+                    if (modtager.Leder.Udleveret == 0)
                     {
-                        int antalTilbageførsel = lodsalg.Modtager.Leder.Antal;
-                        lodsalg.Modtager.Leder.Antal = 0;
-
-                        
-                        context.Lodsalgssamling.Update(lodsalg);
+                        Admin.Antal += modtager.Leder.Antal;
+                        Leder.Antal = 0;
+                        context.Ledere.Update(Leder);
+                        context.SaveChanges();
+                        context.Admins.Update(Admin);
+                        context.SaveChanges();
+                        context.Lodsalgssamling.Remove(lodsalg);
                         context.SaveChanges();
                     }
                 }
                 if (lodsalg.Modtager.BarnId != null && lodsalg.Sælger.LederId != null)
                 {
-
+                    //ikke solgte lodsedler kommer retur til leder og solgte bliver lagt i lodseddel tabel
+                    Leder.Antal += barn.Antal - solgt;
+                    Leder.Udleveret -= barn.Antal;
+                    lodseddel.Solgt += solgt;
+                    barn.Solgt += solgt;
+                    context.Admins.Update(Admin);
+                    context.SaveChanges();
+                    context.Ledere.Update(Leder);
+                    context.SaveChanges();
+                    context.Børn.Update(barn);
+                    context.SaveChanges();
+                    context.Lodsalgssamling.Remove(lodsalg); 
+                    context.SaveChanges(); 
                 }
                 if (lodsalg.Modtager.BarnId != null && lodsalg.Sælger.AdminId != null)
                 {
-
+                    Admin.Antal += barn.Antal - solgt;
+                    lodseddel.Solgt += solgt;
+                    barn.Solgt += solgt;
+                    context.Admins.Update(Admin);
+                    context.SaveChanges();
+                    context.Børn.Update(barn);
+                    context.SaveChanges();
+                    context.Lodsalgssamling.Remove(lodsalg);
+                    context.SaveChanges();  
                 }
             }
         }
