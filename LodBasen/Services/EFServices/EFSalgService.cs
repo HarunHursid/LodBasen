@@ -48,7 +48,26 @@ namespace LodBasen.Services.EFServices
         {
             return Convert.ToInt32(context.Lodsedler.Include(l => l.Antal).Where(l => l.LodseddelId.Equals(lodseddelId)).AsNoTracking());
         }
-
+        public IEnumerable<Sælger> GetSælgere()
+        {
+            return context.Sælgere.ToList();
+        }
+        public IEnumerable<Modtager> GetModtagere()
+        {
+            return context.Modtagere.ToList();
+        }
+        public IEnumerable<Lodseddel> GetLodsedler()
+        {
+            return context.Lodsedler.ToList();
+        }
+        public Sælger GetSælgerById(int sælgerId)
+        {
+            return (Sælger)context.Set<Sælger>().Where(s => s.SælgerId == sælgerId);
+        }
+        public Modtager GetModtagerById(int modtagerId)
+        {
+            return (Modtager)context.Set<Modtager>().Where(m => m.ModtagerId == modtagerId);
+        }
         public Lodseddel GetLodseddelById(int lodseddelId)
         {
             return (Lodseddel)context.Set<Lodseddel>().Where(l => l.LodseddelId == lodseddelId);

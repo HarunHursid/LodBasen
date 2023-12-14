@@ -5,7 +5,53 @@
 }
 <link rel="stylesheet" href="~/css/style.css">
 
+
 <div class="table-container">
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="  ModelOnly  " class="text-danger">
+                </div>
+
+                <div class="form-group form-textfield">
+                    <label asp-for="SelectedSælgerId">Sælger</label>
+                    <select asp-for="SelectedSælgerId" asp-items="@Model.SælgerOptions">
+                        <option value="">Vælg Sælger</option>
+                    </select>
+                    <span asp-validation-for="SelectedSælgerId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-textfield">
+                    <label asp-for="Antal">Antal</label>
+                    <input asp-for="Antal" class="form-control" value="0" />
+                    <span asp-validation-for="Antal" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-textfield">
+                    <label asp-for="SelectedLodseddelId">LodseddelId</label>
+                    <select asp-for="SelectedLodseddelId" asp-items="@Model.LodseddelOptions">
+                        <option value="">Vælg Lodseddel</option>
+                    </select>
+                    <span asp-validation-for="SelectedLodseddelId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-textfield">
+                    <label asp-for="SelectedModtagerId">Modtager</label>
+                    <select asp-for="SelectedModtagerId" asp-items="@Model.ModtagerOptions">
+                        <option value="">Vælg Modtager</option>
+                    </select>
+                    <span asp-validation-for="SelectedModtagerId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@* <div class="table-container">
     <div class="row">
         <div class="col-md-4">
             <form method="post">
@@ -44,4 +90,4 @@
             </form>
         </div>
     </div>
-</div>
+</div> *@
