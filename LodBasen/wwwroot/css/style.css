@@ -69,3 +69,7 @@ h1 {
 .form-textfield {
     margin-bottom: 15px;
 }
+
+.navbar-item {
+    font-weight: 500;
+}
