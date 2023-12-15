@@ -3,47 +3,7 @@
 @{
     ViewData["Title"] = "Create";
 }
- @* <link rel="stylesheet" href="~/css/style.css">
 
-<div class="table-container">
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="  ModelOnly  " class="text-danger">
-            </div>
-            <div class="form-group form-textfield">
-                <label asp-for="@Model.barn.Navn" class="control-label"></label>
-                <input asp-for="@Model.barn.Navn" class="form-control" />
-                <span asp-validation-for="@Model.barn.Navn" class="text-danger"></span>
-            </div>
-            <div class="form-group form-textfield">
-                <label asp-for="@Model.barn.Antal" class="control-label"></label>
-                <input asp-for="@Model.barn.Antal" class="form-control" value="0" />
-                <span asp-validation-for="@Model.barn.Antal" class="text-danger"></span>
-            </div>
-
-            <div class="form-group form-textfield">
-                <label asp-for="@Model.barn.Solgt" class="control-label"></label>
-                <input asp-for="@Model.barn.Solgt" class="form-control" value="0" />
-                <span asp-validation-for="@Model.barn.Solgt" class="text-danger"></span>
-            </div>
-            <div class="form-group form-textfield">
-                <label asp-for="SelectedGruppeNavn">Gruppenavn</label>
-                <select asp-for="SelectedGruppeNavn" asp-items="new SelectList(Model.GruppeNavnOptions)">
-                    <option value="">Gruppenavn</option>
-                </select>
-                <span asp-validation-for="SelectedGruppeNavn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-</div>  *@
-
-
-<!-- Add Material UI stylesheet -->
 <style>
     .form-control {
         background: #F2F2F2;
@@ -57,7 +17,6 @@
     }
 </style>
 
-
 <div class="banner">
     <div class="container p-5">
         <div class="card mx-3 mt-n5 shadow-lg" style="border-radius:0px; border:none">
@@ -67,29 +26,29 @@
                 <form method="post">
                     
                     <div class="form-floating mb-3">
-                        <input type="text" asp-for="@Model.barn.Navn" class="form-control" id="floatingTextInput1" placeholder="John" />
-                        <label for="floatingTextInput1" asp-for="@Model.barn.Navn"></label>
+                        <input type="text" asp-for="@Model.barn.Navn" class="form-control" id="navn" placeholder="John" />
+                        <label for="navn" asp-for="@Model.barn.Navn"></label>
                         <span asp-validation-for="@Model.barn.Navn" class="text-danger"></span>
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="form-control" id="floatingSelect" asp-for="SelectedGruppeNavn" asp-items="new SelectList(Model.GruppeNavnOptions)">
+                        <select class="form-control" id="gruppenavn" asp-for="SelectedGruppeNavn" asp-items="new SelectList(Model.GruppeNavnOptions)">
                             <option value=""></option>
                         </select>
-                        <label for="floatingSelect" asp-for="SelectedGruppeNavn">Gruppenavn</label>
+                        <label for="gruppenavn" asp-for="SelectedGruppeNavn">Gruppenavn</label>
                         <span asp-validation-for="SelectedGruppeNavn" class="text-danger"></span>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input asp-for="@Model.barn.Antal" class="form-control" value="0" id="floatingTextInput2" />
-                                <label for="floatingTextInput2" asp-for="@Model.barn.Antal" class="control-label"></label>
+                                <input asp-for="@Model.barn.Antal" class="form-control" value="0" id="antal" />
+                                <label for="antal" asp-for="@Model.barn.Antal" class="control-label"></label>
                                 <span asp-validation-for="@Model.barn.Antal" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input asp-for="@Model.barn.Solgt" class="form-control" value="0" id="floatingEmailInput" />
-                                <label for="floatingEmailInput" asp-for="@Model.barn.Solgt" class="control-label"></label>
+                                <input asp-for="@Model.barn.Solgt" class="form-control" value="0" id="solgt" />
+                                <label for="solgt" asp-for="@Model.barn.Solgt" class="control-label"></label>
                                 <span asp-validation-for="@Model.barn.Solgt" class="text-danger"></span>
                             </div>
                         </div>
