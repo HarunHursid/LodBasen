@@ -3,36 +3,69 @@ using LodBasen.Services.EFServices;
 using LodBasen.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Linq;
+
 
 namespace LodBasen.Pages.Salg
-{
+    {
     public class CreateLodsalgModel : PageModel
     {
-        [BindProperty(SupportsGet = true)]
+        private readonly ISalgService _salgService;
 
-        public string Search { get; set; }
-        public IEnumerable<Models.Lodsalg> Lodsalgssamling { get; set; }
+        public CreateLodsalgModel(ISalgService salgService)
+        {
+            _salgService = salgService;
+        }
 
-        ISalgService SalgService { get; set; }
-        //public GetLodsalgModel(ISalgService service)
-        //{
-        //    SalgService = service;
-        //}
+        [BindProperty]
+        public int SelectedSælgerId { get; set; }
 
-        //public void OnGet(int id)
-        //{
-    
-        //}
+        [BindProperty]
+        public int SelectedModtagerId { get; set; }
 
-        //public IActionResult OnPost()
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return Page();
-        //    }
+        [BindProperty]
+        public int SelectedLodseddelId { get; set; }
 
-        //    SalgService.AddLodsalg(lodsalg);
-        //    return RedirectToPage("GetLodsalg");
-        //}
+        [BindProperty]
+        public int Antal { get; set; }
+
+        public IEnumerable<SelectListItem> SælgerOptions { get; set; }
+        public IEnumerable<SelectListItem> ModtagerOptions { get; set; }
+        public IEnumerable<SelectListItem> LodseddelOptions { get; set; }
+        public void OnGet(int sælgerId, int modtagerId, int lodseddelId)
+        {
+            // Hent data fra databasen og fyld dropdown-options
+            SælgerOptions = _salgService.GetSælgere().Select(s => new SelectListItem
+            {
+                Value = s.SælgerId.ToString(),
+                Text = s.SælgerId.ToString()
+            });
+
+            ModtagerOptions = _salgService.GetModtagere().Select(m => new SelectListItem
+            {
+                Value = m.ModtagerId.ToString(),
+                Text = m.ModtagerId.ToString()
+            });
+
+            LodseddelOptions = _salgService.GetLodsedler().Select(l => new SelectListItem
+            {
+                Value = l.LodseddelId.ToString(),
+                Text = l.LodseddelId.ToString()
+            });
+        }
+        public IActionResult OnPost()
+        {
+            // Hent sælger, modtager, og lodseddel fra databasen baseret på de valgte id'er
+            var sælger = _salgService.GetSælgerById(SelectedSælgerId);
+            var modtager = _salgService.GetModtagerById(SelectedModtagerId);
+            var lodseddel = _salgService.GetLodseddelById(SelectedLodseddelId);
+
+            // Kald AddOverførsel-metoden
+            _salgService.AddOverførsel(sælger, modtager, lodseddel, Antal);
+
+            // Redirect til en succes-side eller tilbage til den samme side
+            return RedirectToPage("/SuccessPage");
+        }
     }
 }
