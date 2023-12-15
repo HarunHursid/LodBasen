@@ -17,6 +17,14 @@ namespace LodBasen
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options => 
+            { 
+                options.IdleTimeout = TimeSpan.FromSeconds(36000);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential= true;
+            });
             services.AddDbContext<lodbasen_dk_db_lodbasenContext>();
             services.AddTransient<IBarnService, EFBarnService>();
             services.AddTransient<IGruppeService, EFGruppeService>();
@@ -48,6 +56,8 @@ namespace LodBasen
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
