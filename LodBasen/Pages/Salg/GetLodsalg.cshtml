@@ -26,9 +26,9 @@
             {
                 <tr>
                     <td> @item.LodsalgsId </td>
-                    <td> @item.Modtager.Leder.Navn</td>
-                    <td> @item.Modtager.Leder.Antal</td>
-                    <td> @item.Sælger.Admin.Navn</td>
+                    <td> @item.Modtager?.Leder?.Navn</td>
+                    <td> @item.Modtager?.Leder?.Antal</td>
+                    <td> @item.Sælger?.Admin?.Navn</td>
                     <td>
                         <a asp-page="/Salg/DeleteLodsalg" asp-route-id="@item.LodsalgsId">
                             <submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
@@ -56,8 +56,8 @@
             {
                 <tr>
                     <td> @item.LodsalgsId </td>
-                    <td> @item.Modtager.Barn.Navn</td>
-                    <td> @item.Modtager.Barn.Antal</td>
+                    <td> @item.Modtager?.Barn?.Navn</td>
+                    <td> @item.Modtager?.Barn?.Antal</td>
                     <td> @item.Sælger</td>
                     <td>
                         <a asp-page="/Salg/DeleteLodsalg" asp-route-id="@item.LodsalgsId">

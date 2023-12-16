@@ -11,6 +11,9 @@ namespace LodBasen.Models;
 [Table("Lodsalg")]
 public partial class Lodsalg
 {
+    public Lodsalg()
+    {
+    }
     public Lodsalg(int sælgerId, int modtagerId, int lodseddelId)
     {
         //Sælger.SælgerId = sælgerId;
