@@ -3,17 +3,25 @@
 @{
     ViewData["Title"] = "GetLodsalgssamling";
 }
+<link rel="stylesheet" href="~/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<h1> Overførsler </h1>
+<div class="table-container">
+    <div class="headerh1">
+    <h1> Overførsler </h1>
 
-<table class="table">
+<a asp-page="/Salg/CreateLodsalg">
+    <input type="button" class="btn btn-outline-primary" value="Nyt Salg" />
+</a>
+    </div>
+    <table class="table table-striped rounded-table">
     <thead>
         <tr>
             <th> Overførsel ID </th>
             <th> Modtager Navn</th>
             <th> Antal lodsedler</th>
             <th> Modtaget fra</th>
-
+            <th> Slet </th>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +35,11 @@
                     <td> @item.Modtager.Leder.Navn</td>
                     <td> @item.Modtager.Leder.Antal</td>
                     <td> @item.Sælger.Admin.Navn</td>
+                    <td>
+						<a asp-page="/Salg/DeleteLodsalg" asp-route-id="@item.LodsalgsId">
+							<submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
+						</a>
+                    </td>
                 </tr>
             }
 
@@ -39,7 +52,7 @@
             <th> Modtager Navn</th>
             <th> Antal lodsedler</th>
             <th> Modtaget fra</th>
-
+            <th> Slet </th>
         </tr>
     </thead>
     <tbody> 
@@ -52,6 +65,11 @@
                     <td> @item.Modtager.Barn.Navn</td>
                     <td> @item.Modtager.Barn.Antal</td>
                     <td> @item.Sælger</td>
+                    <td>
+                        <a asp-page="/Salg/DeleteLodsalg" asp-route-id="@item.LodsalgsId">
+                            <submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
+                        </a>
+                    </td>
                 </tr>
             }
 
@@ -59,3 +77,4 @@
 
     </tbody>
 </table>
+</div>
