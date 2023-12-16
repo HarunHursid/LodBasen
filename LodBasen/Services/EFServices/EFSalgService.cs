@@ -76,6 +76,9 @@ namespace LodBasen.Services.EFServices
         public void AddOverførsel(Sælger sælger, Modtager modtager, Lodseddel lodseddel, int antal)
         {
             Lodsalg lodsalg = new Lodsalg(sælger.SælgerId, modtager.ModtagerId, lodseddel.LodseddelId);
+            Admin admin = (Admin)context.Admins.Where(a => a.AdminId.Equals(lodsalg.Sælger.AdminId));
+            Leder leder = (Leder)context.Ledere.Where(l => l.LederId.Equals(lodsalg.Sælger.LederId));
+            Barn barn = (Barn)context.Børn.Where(b => b.BarnId.Equals(lodsalg.Modtager.BarnId));
             context.Lodsalgssamling.AddAsync(lodsalg);
             context.SaveChanges();
 
@@ -83,12 +86,12 @@ namespace LodBasen.Services.EFServices
             {
                 if (GetAntalFromAdmin(sælger.AdminId) >= antal && (GetAntalFromAdmin(sælger.AdminId) - antal) > 0)
                 {
-                    sælger.Admin.Antal = GetAntalFromAdmin(sælger.AdminId) - antal;
-                    sælger.Admin.Udleveret += antal;
-                    context.Admins.Update(sælger.Admin);
+                    admin.Antal = GetAntalFromAdmin(sælger.AdminId) - antal;
+                    admin.Udleveret += antal;
+                    context.Admins.Update(admin);
                     context.SaveChanges();
-                    modtager.Leder.Antal += antal;
-                    context.Ledere.Update(modtager.Leder);
+                    leder.Antal += antal;
+                    context.Ledere.Update(leder);
                     context.SaveChanges();
                     //lodseddel.Antal -= antal;
 
@@ -98,30 +101,31 @@ namespace LodBasen.Services.EFServices
             {
                 if (GetAntalFromAdmin(sælger.AdminId) >= antal && (GetAntalFromAdmin(sælger.AdminId) - antal) > 0)
                 {
-                    sælger.Admin.Antal = GetAntalFromAdmin(sælger.AdminId) - antal;
-                    sælger.Admin.Udleveret += antal;
-                    context.Admins.Update(sælger.Admin);
+                    admin.Antal = GetAntalFromAdmin(sælger.AdminId) - antal;
+                    admin.Udleveret += antal;
+                    context.Admins.Update(admin);
                     context.SaveChanges();
-                    modtager.Barn.Antal = antal;
-                    context.Børn.Update(modtager.Barn);
+                    barn.Antal = antal;
+                    context.Børn.Update(barn);
                     context.SaveChanges();
                 }
             }
-            else if (sælger.LederId != null && modtager.BarnId != null)
+            else if ((sælger.LederId != null) && (modtager.BarnId != null) && (modtager.LederId != sælger.LederId))
             {
                 if (GetAntalFromAdmin(sælger.LederId) >= antal && (GetAntalFromLeder(sælger.LederId) - antal) > 0)
                 {
-                    sælger.Leder.Antal = GetAntalFromLeder(sælger.LederId) - antal;
-                    sælger.Leder.Udleveret += antal;
-                    context.Ledere.Update(sælger.Leder);
+                    leder.Antal = GetAntalFromLeder(sælger.LederId) - antal;
+                    leder.Udleveret += antal;
+                    context.Ledere.Update(leder);
                     context.SaveChanges();
-                    modtager.Barn.Antal = antal;
-                    context.Børn.Update(modtager.Barn);
+                    barn.Antal = antal;
+                    context.Børn.Update(barn);
                     context.SaveChanges();
                     //lodseddel.Antal -= antal;
                 }
             }
         }
+        
 
         //public Sælger GetSælgerById(int id)
         //{
