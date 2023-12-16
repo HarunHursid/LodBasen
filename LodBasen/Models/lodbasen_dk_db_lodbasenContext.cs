@@ -87,11 +87,13 @@ public partial class lodbasen_dk_db_lodbasenContext : DbContext
         modelBuilder.Entity<Lodseddel>(entity =>
         {
             entity.HasKey(e => e.LodseddelId).HasName("PK__Lodsedde__502124E28CE0E3CE");
+            entity.Property(e => e.LodseddelId).ValueGeneratedOnAdd();
         });
 
         modelBuilder.Entity<Modtager>(entity =>
         {
             entity.HasKey(e => e.ModtagerId).HasName("PK__Modtager__ECF0393A7D138BFA");
+            entity.Property(e => e.ModtagerId).ValueGeneratedOnAdd();
 
             entity.HasOne(d => d.Barn).WithMany(p => p.Modtagere).HasConstraintName("FK__Modtager__Barn_I__2B0A656D");
 
@@ -101,6 +103,7 @@ public partial class lodbasen_dk_db_lodbasenContext : DbContext
         modelBuilder.Entity<Sælger>(entity =>
         {
             entity.HasKey(e => e.SælgerId).HasName("PK__Sælger__0875BA34586244EA");
+            entity.Property(e => e.SælgerId).ValueGeneratedOnAdd();
 
             entity.HasOne(d => d.Admin).WithMany(p => p.Sælgere).HasConstraintName("FK__Sælger__Admin_ID__2EDAF651");
 
