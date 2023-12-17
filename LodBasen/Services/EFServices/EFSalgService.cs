@@ -24,7 +24,7 @@ namespace LodBasen.Services.EFServices
 
         public IEnumerable<Lodsalg> GetLodsalgssamling()
         {
-            Lodsalgssamling = context.Lodsalgssamling.Include(m => m.Modtager.Barn).Include(m => m.Modtager.Leder);
+            Lodsalgssamling = context.Lodsalgssamling.Include(m => m.Modtager.Barn).Include(m => m.Modtager.Leder).Include(s => s.Sælger.Admin).Include(s => s.Sælger.Leder);
             return Lodsalgssamling;
         }
 

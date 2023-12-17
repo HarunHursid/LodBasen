@@ -8,7 +8,7 @@ namespace LodBasen.Services.Interfaces
 
         public void AddAdmin(Admin admin);
 
-        public void UpdateLeder(Admin admin);
+        public void UpdateAdmin(Admin admin);
 
         public Admin GetAdminById(int id);
         
