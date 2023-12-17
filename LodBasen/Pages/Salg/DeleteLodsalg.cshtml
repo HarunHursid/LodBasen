@@ -1,4 +1,37 @@
 ﻿@page
 @model LodBasen.Pages.Salg.DeleteLodsalgModel
 @{
+    ViewData["Title"] = "Delete";
 }
+
+<h1>Delete Lodsalg</h1>
+
+<h3>Regisrer Solgte lodsedler</h3>
+
+<div class="form-group form-textfield">
+    <label asp-for="Solgt">Solgt</label>
+    <input asp-for="Solgt" class="form-control" value="0" />
+    <span asp-validation-for="Solgt" class="text-danger"></span>
+</div>
+<h3>Er du sikker?</h3>
+<div>
+    <hr />
+    <form method="post">
+        <dl class="row">
+
+            <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.lodsalg.LodsalgsId)</dt>
+            <dd class="col-sm-10">  @Model.lodsalg.LodsalgsId </dd>
+            <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.lodsalg.ModtagerId) </dt>
+            <dd class="col-sm-10"> @Model.lodsalg.ModtagerId </dd>
+            <dt class="col-sm-2">  @Html.DisplayNameFor(model => model.lodsalg.SælgerId) </dt>
+            <dd class="col-sm-10"> @Model.lodsalg.SælgerId  </dd>
+            <dt class="col-sm-2">  @Html.DisplayNameFor(model => model.lodsalg.LodseddelId) </dt>
+            <dd class="col-sm-10"> @Model.lodsalg.LodseddelId  </dd>
+        </dl>
+        <input type="hidden" asp-for="lodsalg" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="/Salg/GetLodsalg">
+            <input type="button" class="btn btn-outline-primary" value="Tilbage" />
+        </a>
+    </form>
+</div>

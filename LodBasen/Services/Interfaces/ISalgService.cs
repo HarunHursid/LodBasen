@@ -15,7 +15,9 @@ namespace LodBasen.Services.Interfaces
 
         public void AddOverførsel(Sælger sælger, Modtager modtager, Lodseddel lodseddel, int Antal);
 
-        //public void AddOverførsel(int sælgerId, int modtagerId, int lodseddelId, int antal);
+        public Lodsalg GetLodsalgById(int id);
+
+        public void AfslutOverførsel(Lodsalg lodsalg, int solgt);
 
 
         //public String GetSælgerNamebyId(int Id);

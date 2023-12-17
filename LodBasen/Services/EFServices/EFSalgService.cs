@@ -199,13 +199,16 @@ namespace LodBasen.Services.EFServices
         //}
 
 
-
+        public Lodsalg GetLodsalgById(int id)
+        {
+            return context.Set<Lodsalg>().FirstOrDefault(l => l.LodsalgsId == id);
+        }
 
         public void AfslutOverførsel(Lodsalg lodsalg, int solgt)
         {
-            Modtager modtager = lodsalg.Modtager;
-            Sælger sælger = lodsalg.Sælger;
-            Lodseddel lodseddel = lodsalg.Lodseddel;
+            Modtager modtager = context.Set<Modtager>().FirstOrDefault(m => m.ModtagerId.Equals(lodsalg.ModtagerId));
+            Sælger sælger = context.Set<Sælger>().FirstOrDefault(s => s.SælgerId.Equals(lodsalg.SælgerId));
+            Lodseddel lodseddel = context.Set<Lodseddel>().FirstOrDefault(l => l.LodseddelId.Equals(lodsalg.LodseddelId));
 
             Admin? Admin = context.Set<Admin>().FirstOrDefault(a => a.AdminId == sælger.AdminId);
             Leder? LederSælger = context.Set<Leder>().FirstOrDefault(l => l.LederId == sælger.LederId);
