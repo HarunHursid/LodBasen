@@ -214,12 +214,6 @@ namespace LodBasen.Services.EFServices
             Leder? LederSælger = context.Set<Leder>().FirstOrDefault(l => l.LederId == lodsalg.Sælger.LederId);
             Leder? LederModtager = context.Set<Leder>().FirstOrDefault(l => l.LederId == lodsalg.Modtager.LederId);
             Barn? Barn = context.Set<Barn>().FirstOrDefault(b => b.BarnId == lodsalg.Modtager.BarnId);
-
-
-            //Admin? Admin = (Admin)context.Admins.Where(a => a.AdminId.Equals(lodsalg.Sælger.AdminId));
-            //Leder? LederSælger = (Leder)context.Ledere.Where(l => l.LederId.Equals(lodsalg.Sælger.LederId));
-            //Leder? LederModtager = (Leder)context.Ledere.Where(l => l.LederId.Equals(lodsalg.Sælger.LederId));
-            //Barn? barn = (Barn)context.Børn.Where(b => b.BarnId.Equals(lodsalg.Modtager.BarnId));
             
                 //kan først afslutte lodsalg hvis lederen ikke har nogen udleverede lodsedler til børn
                 if (lodsalg.Modtager.LederId != null && lodsalg.Sælger.AdminId != null && lodsalg.Modtager.Leder.Udleveret == 0)
