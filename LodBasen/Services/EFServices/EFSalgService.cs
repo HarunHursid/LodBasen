@@ -84,23 +84,97 @@ namespace LodBasen.Services.EFServices
             nyOverførsel.Modtager = modtager;
             nyOverførsel.Lodseddel = lodseddel;
 
+            Admin? Admin = context.Set<Admin>().FirstOrDefault(a => a.AdminId == sælger.AdminId);
+            Leder? LederSælger = context.Set<Leder>().FirstOrDefault(l => l.LederId == sælger.LederId);
+            Leder? LederModtager = context.Set<Leder>().FirstOrDefault(l => l.LederId == modtager.LederId);
+            Barn? Barn = context.Set<Barn>().FirstOrDefault(b => b.BarnId == modtager.BarnId);
+
+            if (sælger.AdminId != null && modtager.LederId != null)
+            {
+                if (CheckAntalIsOkAdmin(Admin, antal)/*sælger.Admin.Antal >= antal && (sælger.Admin.Antal - antal) > 0*/)
+                {
+                    Admin.Antal = Admin.Antal - antal;
+                    Admin.Udleveret = Admin.Udleveret + antal;
+                    context.Admins.Update(Admin);
+                    context.SaveChanges();
+                    LederModtager.Antal = LederModtager.Antal + LederModtager.Antal + antal;
+                    context.Ledere.Update(LederModtager);
+                    context.SaveChanges();
+                    //lodseddel.Antal -= antal;
+
+                }
+            }
+            else if (sælger.AdminId != null && modtager.BarnId != null)
+            {
+                if (CheckAntalIsOkAdmin(Admin, antal)/*sælger.Admin.Antal >= antal && (sælger.Admin.Antal - antal) > 0*/)
+                {
+                    Admin.Antal = Admin.Antal - antal;
+                    Admin.Udleveret = Admin.Udleveret + antal;
+                    context.Admins.Update(Admin);
+                    context.SaveChanges();
+                    Barn.Antal = Barn.Antal + antal;
+                    context.Børn.Update(Barn);
+                    context.SaveChanges();
+                }
+            }
+            else if (sælger.LederId != null && modtager.BarnId != null)
+            {
+                if (CheckAntalIsOkLeder(LederSælger, antal )/*sælger.Leder.Antal >= antal && (sælger.Leder.Antal - antal) > 0*/)
+                {
+                    LederSælger.Antal = LederSælger.Antal - antal;
+                    LederSælger.Udleveret = LederSælger.Antal + antal;
+                    context.Ledere.Update(LederSælger);
+                    context.SaveChanges();
+                    Barn.Antal = Barn.Antal + antal;
+                    context.Børn.Update(Barn);
+                    context.SaveChanges();
+                    //lodseddel.Antal -= antal;
+                }
+            }
+
             // Opdater antallet på den relevante entitet (Admin, Barn eller Leder)
-            if (sælger.Admin != null)
-            {
-                sælger.Admin.Antal += antal;
-            }
-            else if (modtager.Barn != null)
-            {
-                modtager.Barn.Antal += antal;
-            }
-            else if (modtager.Leder != null)
-            {
-                modtager.Leder.Antal += antal;
-            }
+            //if (sælger.Admin != null)
+            //{
+            //    sælger.Admin.Antal += antal;
+            //}
+            //else if (modtager.Barn != null)
+            //{
+            //    modtager.Barn.Antal += antal;
+            //}
+            //else if (modtager.Leder != null)
+            //{
+            //    modtager.Leder.Antal += antal;
+            //}
 
             // Gem ændringer i databasen
             context.Lodsalgssamling.Add(nyOverførsel);
             context.SaveChanges();
+        }
+
+        public bool CheckAntalIsOkAdmin(Admin admin, int overførtAntal)
+        {   
+            if (admin.Antal >= overførtAntal && admin.Antal > 0) 
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+                    
+                    };
+        }
+
+        public bool CheckAntalIsOkLeder(Leder leder, int overførtAntal) 
+        {
+            if (leder.Antal >= overførtAntal && leder.Antal > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+
+            };
         }
 
         //public void AddOverførsel(Sælger sælger, Modtager modtager, Lodseddel lodseddel, int antal)
@@ -152,6 +226,9 @@ namespace LodBasen.Services.EFServices
         //        }
         //    }
         //}
+
+        
+
 
         //public Sælger GetSælgerById(int id)
         //{
