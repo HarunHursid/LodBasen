@@ -233,7 +233,7 @@ namespace LodBasen.Services.EFServices
                     context.SaveChanges();
 
                 }
-                if (lodsalg.Modtager.BarnId != null && lodsalg.Sælger.LederId != null && solgt <= lodsalg.Modtager.Barn.Antal)
+                else if (lodsalg.Modtager.BarnId != null && lodsalg.Sælger.LederId != null && solgt <= lodsalg.Modtager.Barn.Antal)
                 {
                     //ikke solgte lodsedler kommer retur til leder og solgte bliver lagt i lodseddel tabel
                     LederSælger.Antal = LederSælger.Antal + (Barn.Antal - solgt);
@@ -249,7 +249,7 @@ namespace LodBasen.Services.EFServices
                     context.Lodsalgssamling.Remove(lodsalg);
                     context.SaveChanges();
                 }
-                if (lodsalg.Modtager.BarnId != null && lodsalg.Sælger.AdminId != null && solgt <= lodsalg.Modtager.Barn.Antal)
+                else if (lodsalg.Modtager.BarnId != null && lodsalg.Sælger.AdminId != null && solgt <= lodsalg.Modtager.Barn.Antal)
                 {
                     Admin.Antal = Admin.Antal + (Barn.Antal - solgt);
                     lodsalg.Lodseddel.Solgt = lodsalg.Lodseddel.Solgt + solgt;
