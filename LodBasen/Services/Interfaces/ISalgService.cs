@@ -13,6 +13,7 @@ namespace LodBasen.Services.Interfaces
         public Modtager GetModtagerById(int modtagerId);
         public Lodseddel GetLodseddelById(int lodseddelId);
 
+
         public void AddOverførsel(Sælger sælger, Modtager modtager, Lodseddel lodseddel, int Antal);
 
         //public void AddOverførsel(int sælgerId, int modtagerId, int lodseddelId, int antal);

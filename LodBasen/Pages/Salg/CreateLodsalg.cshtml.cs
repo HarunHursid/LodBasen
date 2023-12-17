@@ -40,7 +40,7 @@ namespace LodBasen.Pages.Salg
             {
                 Value = s.SælgerId.ToString(),
                 Text = s.SælgerId.ToString()
-            });
+            }) ;
 
             ModtagerOptions = _salgService.GetModtagere().Select(m => new SelectListItem
             {

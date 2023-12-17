@@ -1,6 +1,7 @@
 ﻿using LodBasen.Models;
 using LodBasen.Pages;
 using LodBasen.Services.Interfaces;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -30,6 +31,8 @@ namespace LodBasen.Services.EFServices
             return Sælgere = context.Sælgere.Include(a => a.Admin).Include(l => l.Leder).AsNoTracking().ToList();
 
         }
+
+        
 
         public Sælger GetSælgerIdByAdmin(int adminId) 
         {
