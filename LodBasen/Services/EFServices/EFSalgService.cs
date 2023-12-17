@@ -213,10 +213,10 @@ namespace LodBasen.Services.EFServices
             //Lodseddel lodseddel = context.Set<Lodseddel>().FirstOrDefault(l => l.LodseddelId.Equals(lodsalg.LodseddelId));
             if (lodsalg != null)
             {
-                Admin? Admin = context.Set<Admin>().FirstOrDefault(a => a.AdminId == lodsalg.Sælger.Admin.AdminId);
-                Leder? LederSælger = context.Set<Leder>().FirstOrDefault(l => l.LederId == lodsalg.Sælger.Leder.LederId);
-                Leder? LederModtager = context.Set<Leder>().FirstOrDefault(l => l.LederId == lodsalg.Modtager.Leder.LederId);
-                Barn? Barn = context.Set<Barn>().FirstOrDefault(b => b.BarnId == lodsalg.Modtager.Barn.BarnId);
+                Admin? Admin = context.Set<Admin>().FirstOrDefault(a => a.AdminId == lodsalg.Sælger.AdminId);
+                Leder? LederSælger = context.Set<Leder>().FirstOrDefault(l => l.LederId == lodsalg.Sælger.LederId);
+                Leder? LederModtager = context.Set<Leder>().FirstOrDefault(l => l.LederId == lodsalg.Modtager.LederId);
+                Barn? Barn = context.Set<Barn>().FirstOrDefault(b => b.BarnId == lodsalg.Modtager.BarnId);
 
                 //kan først afslutte lodsalg hvis lederen ikke har nogen udleverede lodsedler til børn
                 if (lodsalg.Modtager.LederId != null && lodsalg.Sælger.AdminId != null && lodsalg.Modtager.Leder.Udleveret == 0)
