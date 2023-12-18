@@ -84,7 +84,7 @@ namespace LodBasen.Pages.Auth
                                     HttpContext.Session.SetString("created_at", created_at);
 
                                     // the user is authenticated successfully => redirect to the home page
-                                    Response.Redirect("/");
+                                    Response.Redirect("/Barn/GetBarn");
                                 }
                             }
                         }

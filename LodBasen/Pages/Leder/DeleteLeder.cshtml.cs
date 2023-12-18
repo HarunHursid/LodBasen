@@ -1,10 +1,12 @@
+using LodBasen.Helpers;
 using LodBasen.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LodBasen.Pages.Leder
 {
-        public class DeleteLederModel : PageModel
+    [RequireAuth(RequiredRole = "Admin")]
+    public class DeleteLederModel : PageModel
         {
             [BindProperty]
             public Models.Leder leder { get; set; }
