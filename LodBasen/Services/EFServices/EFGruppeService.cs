@@ -30,12 +30,21 @@ namespace LodBasen.Services.EFServices
         {
                 return context.Grupper.Find(id);
         }
-        public void DeleteGruppe(Gruppe gruppe)
+        //public void DeleteGruppe(Gruppe gruppe)
+        //{
+        //    if (gruppe != null)
+        //    {
+        //        context.Grupper.Remove(gruppe);
+        //        context.SaveChangesAsync();
+        //    }
+        //}
+
+        public async Task DeleteGruppe(Gruppe gruppe)
         {
             if (gruppe != null)
             {
                 context.Grupper.Remove(gruppe);
-                context.SaveChangesAsync();
+                await context.SaveChangesAsync();
             }
         }
         public IEnumerable<Gruppe> GetGrupper(string search)

@@ -8,7 +8,9 @@ namespace LodBasen.Services.Interfaces
         IEnumerable<Gruppe> GetGrupper();
         void UpdateGruppe(Gruppe gruppe);
         void AddGruppe(Gruppe gruppe);
-        void DeleteGruppe(Gruppe gruppe);
+        //void DeleteGruppe(Gruppe gruppe);
+        Task DeleteGruppe(Gruppe gruppe);
+        
         Gruppe GetGruppeById(int id);
     }
 }
