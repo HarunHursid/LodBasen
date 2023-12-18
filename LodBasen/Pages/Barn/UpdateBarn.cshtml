@@ -20,8 +20,9 @@
             <div>
                 <label asp-for="SelectedGruppeNavn">GruppeNavn</label>
                 <select asp-for="SelectedGruppeNavn" asp-items="new SelectList(Model.GruppeNavnOptions)">
-                    <option value="">@Model.barn.Gruppe.GruppeNavn</option>
+                    <option value="@Model.barn.Gruppe.GruppeNavn" selected>@Model.barn.Gruppe.GruppeNavn</option>
                 </select>
+
                 <span asp-validation-for="SelectedGruppeNavn" class="text-danger"></span>
             </div>
     <div class="form-group">
