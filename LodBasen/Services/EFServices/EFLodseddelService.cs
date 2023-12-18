@@ -20,5 +20,6 @@ namespace LodBasen.Services.EFServices
             Lodsedler = context.Lodsedler;
             return Lodsedler;
         }
+
     }
 }

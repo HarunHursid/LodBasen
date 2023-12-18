@@ -58,10 +58,20 @@ namespace LodBasen.Services.EFServices
             return context.Grupper.FirstOrDefault(g => g.GruppeId == id);
         }
 
+        //public void DeleteBarn(Barn barn)
+        //{
+        //    if (barn != null)
+        //    {
+        //        context.Børn.Remove(barn);
+        //        context.SaveChanges();
+        //    }
+        //}
         public void DeleteBarn(Barn barn)
         {
             if (barn != null)
             {
+                var modtagere = context.Modtagere.Where(m => m.BarnId == barn.BarnId);
+                context.Modtagere.RemoveRange(modtagere);
                 context.Børn.Remove(barn);
                 context.SaveChanges();
             }

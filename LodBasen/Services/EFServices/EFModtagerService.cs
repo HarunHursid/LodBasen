@@ -18,5 +18,15 @@ namespace LodBasen.Services.EFServices
             Modtagere = context.Modtagere.Include(b => b.Barn).Include(l => l.Leder);
             return Modtagere;
         }
+
+        public Modtager GetModtagerIdByLeder(int lederId)
+        {
+            return (Modtager)context.Set<Modtager>().Where(l => l.LederId == lederId).Include(a => a.Leder);
+        }
+
+        public Modtager GetModtagerIdByBarn(int barnId)
+        {
+            return (Modtager)context.Set<Modtager>().Where(b => b.BarnId == barnId).Include(b => b.Barn);
+        }
     }
 }

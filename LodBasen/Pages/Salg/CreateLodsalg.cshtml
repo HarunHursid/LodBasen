@@ -1,4 +1,93 @@
 ﻿@page
 @model LodBasen.Pages.Salg.CreateLodsalgModel
 @{
+    ViewData["Title"] = "Create";
 }
+<link rel="stylesheet" href="~/css/style.css">
+
+
+<div class="table-container">
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="  ModelOnly  " class="text-danger">
+                </div>
+
+                <div class="form-group form-textfield">
+                    <label asp-for="SelectedSælgerId">Sælger</label>
+                    <select asp-for="SelectedSælgerId" asp-items="@Model.SælgerOptions">
+                        <option value="">Vælg Sælger</option>
+                    </select>
+                    <span asp-validation-for="SelectedSælgerId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-textfield">
+                    <label asp-for="Antal">Antal</label>
+                    <input asp-for="Antal" class="form-control" value="0" />
+                    <span asp-validation-for="Antal" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-textfield">
+                    <label asp-for="SelectedLodseddelId">LodseddelId</label>
+                    <select asp-for="SelectedLodseddelId" asp-items="@Model.LodseddelOptions">
+                        <option value="">Vælg Lodseddel</option>
+                    </select>
+                    <span asp-validation-for="SelectedLodseddelId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-textfield">
+                    <label asp-for="SelectedModtagerId">Modtager</label>
+                    <select asp-for="SelectedModtagerId" asp-items="@Model.ModtagerOptions">
+                        <option value="">Vælg Modtager</option>
+                    </select>
+                    <span asp-validation-for="SelectedModtagerId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@* <div class="table-container">
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="  ModelOnly  " class="text-danger">
+                </div>
+                <div class="form-group form-textfield">
+                    <label asp-for="SelectedModtager">Modtager</label>
+                    <select asp-for="SelectedModtager" asp-items="new SelectList(Model.ModtagerOptions)">
+                        <option value="">Modtager</option>
+                    </select>
+                    <span asp-validation-for="SelectedModtager" class="text-danger"></span>
+                </div>
+                <div class="form-group form-textfield">
+                    <label asp-for="@Model.lodsalg.Antal" class="control-label"></label>
+                    <input asp-for="@Model.lodsalg.Antal" class="form-control" value="0" />
+                    <span asp-validation-for="@Model.lodsalg.Antal" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-textfield">
+                    <label asp-for="SelectedLodseddelId">LodseddelId</label>
+                    <select asp-for="SelectedLodseddelId" asp-items="new SelectList(Model.LodseddelIdOptions)">
+                        <option value="">LodseddelId</option>
+                    </select>
+                    <span asp-validation-for="SelectedLodseddelId" class="text-danger"></span>
+                </div>
+                <div class="form-group form-textfield">
+                    <label asp-for="SelectedAfsender">Afsender</label>
+                    <select asp-for="SelectedAfsender" asp-items="new SelectList(Model.AfsenderOptions)">
+                        <option value="">Gruppenavn</option>
+                    </select>
+                    <span asp-validation-for="SelectedAfsender" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div> *@

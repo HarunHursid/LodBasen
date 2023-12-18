@@ -15,16 +15,14 @@
     <div class="headerh1">
     <h1>Børn</h1>
 
-    @* <p>
-        <a asp-page="/Barn/CreateBarn">Tilføj barn</a>
-    </p>
-    <form>
-        <p>
-            Search: <input type="text" asp-for="FilterCriteria" />
-            <input type="submit" value="Filter" />
-            <a asp-page="/Barn/GetBarn">Back to Full List </a>
-        </p>
-    </form> *@
+        <form method="get" class="form-inline">
+            <div class="input-group">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" asp-for="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
 
     <a asp-page="/Barn/CreateBarn">
         <input type="button" class="btn btn-outline-primary" value="Tilføj barn"/>
@@ -52,7 +50,7 @@
                         <td>  @item.Navn </td>
                         <td>  @item.Antal </td>
                         <td>  @item.Solgt </td>
-                        <td>  @item.Gruppe.GruppeNavn </td>
+                        <td><a class="a-link" asp-page="/Barn/GruppeBarn" asp-route-id="@item.GruppeId">@item.Gruppe.GruppeNavn</a></td>
                         <td>
                             <a asp-page="/Barn/UpdateBarn" asp-route-id="@item.BarnId">
                                  <submit class="btn btn-outline-dark"><i class="fa fa-pencil"></i></submit>
