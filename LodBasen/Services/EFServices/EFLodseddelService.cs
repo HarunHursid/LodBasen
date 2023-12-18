@@ -21,5 +21,7 @@ namespace LodBasen.Services.EFServices
             return Lodsedler;
         }
 
+        
+
     }
 }
