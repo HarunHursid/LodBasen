@@ -3,72 +3,79 @@
 @{
     ViewData["Title"] = "GetLodsalgssamling";
 }
+<link rel="stylesheet" href="~/css/style.css">
 
-<h1> Overførsler </h1>
-<a asp-page="/Salg/CreateLodsalg">
-    <input type="button" class="btn btn-outline-primary" value="Nyt Salg" />
-</a>
+<div class="table-container">
 
-<table class="table">
-    <thead>
-        <tr>
-            <th> Overførsel ID </th>
-            <th> Modtager: Leder </th>
-            <th> Antal lodsedler </th>
-            <th> Modtaget fra </th>
-            <th> Slet </th>
-        </tr>
-    </thead>
-    <tbody>
+    <div class="headerh1">
+        <h1> Overførsler </h1>
+        <a asp-page="/Salg/CreateLodsalg">
+            <input type="button" class="btn btn-outline-primary" value="Nyt Salg" />
+        </a>
+    </div>
 
-        @if (Model != null)
-        {
-            @foreach (var item in Model.Lodsalgssamling.Where(l => l.Modtager.LederId != null))
+    <hr />
+
+    <table class="table table-striped rounded-table shadow p-3 mb-5 bg-white rounded">
+        <thead class="t-head">
+            <tr>
+                <th class="th-item"> Overførsel ID </th>
+                <th class="th-item"> Modtager: Leder </th>
+                <th class="th-item"> Antal lodsedler </th>
+                <th class="th-item"> Modtaget fra </th>
+                <th class="th-item th-knap" > Slet </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (Model != null)
             {
-                <tr>
-                    <td> @item.LodsalgsId </td>
-                    <td> @item.Modtager?.Leder?.Navn </td>
-                    <td> @item.Modtager?.Leder?.Antal </td>
-                    <td> @item.Sælger?.Admin?.Navn </td>
-                    <td>
-                        <a asp-page="/Salg/DeleteLodsalg" asp-route-id="@item.LodsalgsId">
-                            <submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
-                        </a>
-                    </td>
-                </tr>
+                @foreach (var item in Model.Lodsalgssamling.Where(l => l.Modtager.LederId != null))
+                {
+                    <tr>
+                        <td> @item.LodsalgsId </td>
+                        <td> @item.Modtager?.Leder?.Navn </td>
+                        <td> @item.Modtager?.Leder?.Antal </td>
+                        <td> @item.Sælger?.Admin?.Navn </td>
+                        <td>
+                            <a asp-page="/Salg/DeleteLodsalg" asp-route-id="@item.LodsalgsId">
+                                <submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+        <thead class="t-head">
+            <tr>
+                <th class="th-item"> Overførsel ID </th>
+                <th class="th-item"> Modtager: Barn </th>
+                <th class="th-item"> Antal lodsedler </th>
+                <th class="th-item"> Modtaget fra </th>
+                <th class="th-item th-knap"> Slet </th>
+            </tr>
+        </thead>
+        <tbody> 
+               @if (Model != null)
+            {
+                @foreach (var item in Model.Lodsalgssamling.Where(l => l.Modtager.BarnId != null))
+                {
+                    <tr>
+                        <td> @item.LodsalgsId </td>
+                        <td> @item.Modtager?.Barn?.Navn</td>
+                        <td> @item.Modtager?.Barn?.Antal</td>
+                        <td> @item.Sælger?.Admin?.Navn @item.Sælger?.Leder?.Navn </td>
+                        <td>
+                            <a asp-page="/Salg/DeleteLodsalg" asp-route-id="@item.LodsalgsId">
+                                <submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
+                            </a>
+                        </td>
+                    </tr>
+                }
+
             }
 
-        }
-
-    </tbody>
-    <thead>
-        <tr>
-            <th> Overførsel ID </th>
-            <th> Modtager: Barn </th>
-            <th> Antal lodsedler </th>
-            <th> Modtaget fra </th>
-            <th> Slet </th>
-        </tr>
-    </thead>
-    <tbody> 
-           @if (Model != null)
-        {
-            @foreach (var item in Model.Lodsalgssamling.Where(l => l.Modtager.BarnId != null))
-            {
-                <tr>
-                    <td> @item.LodsalgsId </td>
-                    <td> @item.Modtager?.Barn?.Navn</td>
-                    <td> @item.Modtager?.Barn?.Antal</td>
-                    <td> @item.Sælger?.Admin?.Navn @item.Sælger?.Leder?.Navn </td>
-                    <td>
-                        <a asp-page="/Salg/DeleteLodsalg" asp-route-id="@item.LodsalgsId">
-                            <submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
-                        </a>
-                    </td>
-                </tr>
-            }
-
-        }
-
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
