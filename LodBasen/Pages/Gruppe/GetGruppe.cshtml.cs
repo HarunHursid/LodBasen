@@ -6,7 +6,7 @@ using LodBasen.Helpers;
 
 namespace LodBasen.Pages.Gruppe
 {
-    [RequireAuth(RequiredRole = "Admin" + "Leder")]
+    [RequireAuth(RequiredRole = "Admin")]
     public class GetGruppeModel : PageModel
     {
 		[BindProperty(SupportsGet = true)]
