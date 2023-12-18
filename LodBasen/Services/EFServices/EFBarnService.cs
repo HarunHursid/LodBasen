@@ -96,5 +96,10 @@ namespace LodBasen.Services.EFServices
             // Implement logic to return all Børn as IQueryable
             return context.Børn.AsQueryable();
         }
+
+        public int GetSuperSælgerBarn()
+        {
+            return context.Børn.Max(b => b.Solgt);
+        }
     }
 }

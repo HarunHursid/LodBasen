@@ -22,7 +22,7 @@ namespace LodBasen.Services.EFServices
             context.SaveChanges();
         }
 
-        public void UpdateLeder(Admin admin)
+        public void UpdateAdmin(Admin admin)
         {
             context.Admins.Update(admin);
             context.SaveChanges();

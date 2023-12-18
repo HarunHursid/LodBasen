@@ -64,8 +64,8 @@ namespace LodBasen.Pages.Salg
             // Kald AddOverførsel-metoden
             _salgService.AddOverførsel(sælger, modtager, lodseddel, Antal);
 
-            // Redirect til en succes-side eller tilbage til den samme side
-            return RedirectToPage("/SuccessPage");
+            // Redirect tilbage til GetLodsalg
+            return RedirectToPage("/Salg/GetLodsalg");
         }
     }
 }

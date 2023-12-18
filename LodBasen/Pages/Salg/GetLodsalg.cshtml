@@ -8,13 +8,14 @@
 <a asp-page="/Salg/CreateLodsalg">
     <input type="button" class="btn btn-outline-primary" value="Nyt Salg" />
 </a>
+
 <table class="table">
     <thead>
         <tr>
             <th> Overførsel ID </th>
-            <th> Modtager Navn</th>
-            <th> Antal lodsedler</th>
-            <th> Modtaget fra</th>
+            <th> Modtager: Leder </th>
+            <th> Antal lodsedler </th>
+            <th> Modtaget fra </th>
             <th> Slet </th>
         </tr>
     </thead>
@@ -22,13 +23,13 @@
 
         @if (Model != null)
         {
-            @foreach (var item in Model.Lodsalgssamling)
+            @foreach (var item in Model.Lodsalgssamling.Where(l => l.Modtager.LederId != null))
             {
                 <tr>
                     <td> @item.LodsalgsId </td>
-                    <td> @item.Modtager.Leder.Navn</td>
-                    <td> @item.Modtager.Leder.Antal</td>
-                    <td> @item.Sælger.Admin.Navn</td>
+                    <td> @item.Modtager?.Leder?.Navn </td>
+                    <td> @item.Modtager?.Leder?.Antal </td>
+                    <td> @item.Sælger?.Admin?.Navn </td>
                     <td>
                         <a asp-page="/Salg/DeleteLodsalg" asp-route-id="@item.LodsalgsId">
                             <submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
@@ -43,22 +44,22 @@
     <thead>
         <tr>
             <th> Overførsel ID </th>
-            <th> Modtager Navn</th>
-            <th> Antal lodsedler</th>
-            <th> Modtaget fra</th>
+            <th> Modtager: Barn </th>
+            <th> Antal lodsedler </th>
+            <th> Modtaget fra </th>
             <th> Slet </th>
         </tr>
     </thead>
     <tbody> 
            @if (Model != null)
         {
-            @foreach (var item in Model.Lodsalgssamling)
+            @foreach (var item in Model.Lodsalgssamling.Where(l => l.Modtager.BarnId != null))
             {
                 <tr>
                     <td> @item.LodsalgsId </td>
-                    <td> @item.Modtager.Barn.Navn</td>
-                    <td> @item.Modtager.Barn.Antal</td>
-                    <td> @item.Sælger</td>
+                    <td> @item.Modtager?.Barn?.Navn</td>
+                    <td> @item.Modtager?.Barn?.Antal</td>
+                    <td> @item.Sælger?.Admin?.Navn @item.Sælger?.Leder?.Navn </td>
                     <td>
                         <a asp-page="/Salg/DeleteLodsalg" asp-route-id="@item.LodsalgsId">
                             <submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
