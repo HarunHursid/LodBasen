@@ -2,9 +2,11 @@ using LodBasen.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using LodBasen.Models;
+using LodBasen.Helpers;
 
 namespace LodBasen.Pages.Gruppe
 {
+    [RequireAuth(RequiredRole = "Admin" + "Leder")]
     public class GetGruppeModel : PageModel
     {
 		[BindProperty(SupportsGet = true)]

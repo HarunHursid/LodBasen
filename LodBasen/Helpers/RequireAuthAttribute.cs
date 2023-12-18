@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.CodeAnalysis.Scripting;
+using Microsoft.VisualBasic;
+using Xunit.Sdk;
 
 namespace LodBasen.Helpers
 {
@@ -17,13 +20,13 @@ namespace LodBasen.Helpers
 
             if (role == null)
             {
-                context.Result = new RedirectResult("/");
+                context.Result = new RedirectResult("/GetSuperSælgerBarn");
             }
             else 
             {
                 if (RequiredRole.Length > 0 && !RequiredRole.Equals(role)) 
                 {
-                    context.Result = new RedirectResult("/");
+                    context.Result = new RedirectResult("/GetSuperSælgerBarn");
                 }
             }
 

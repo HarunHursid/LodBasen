@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Diagnostics;
 using LodBasen.Models;
+using LodBasen.Helpers;
 
 namespace LodBasen.Pages.Leder
 {
+    [RequireAuth(RequiredRole = "Admin")]
     public class UpdateLederModel : PageModel
     {
         [BindProperty]

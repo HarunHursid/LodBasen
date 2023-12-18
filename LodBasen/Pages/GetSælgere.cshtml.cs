@@ -1,3 +1,4 @@
+using LodBasen.Helpers;
 using LodBasen.Models;
 using LodBasen.Services.EFServices;
 using LodBasen.Services.Interfaces;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LodBasen.Pages
 {
+    [RequireAuth(RequiredRole = "Admin")]
     public class GetSælgereModel : PageModel
     {
         [BindProperty(SupportsGet = true)]
