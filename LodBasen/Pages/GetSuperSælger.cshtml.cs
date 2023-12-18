@@ -1,4 +1,6 @@
+using LodBasen.Helpers;
 using LodBasen.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore;
@@ -7,6 +9,7 @@ namespace LodBasen.Pages
 {
     public class GetSuperSælgerModel : PageModel
     {
+        
         [BindProperty(SupportsGet = true)]
         public IEnumerable<int> SuperSælgere { get; set; }
 

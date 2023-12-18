@@ -208,15 +208,37 @@ namespace LodBasen.Services.EFServices
 
         public void AfslutOverførsel(Lodsalg lodsalg, int solgt)
         {
-            //Modtager modtager = context.Set<Modtager>().FirstOrDefault(m => m.ModtagerId.Equals(lodsalg.ModtagerId));
-            //Sælger sælger = context.Set<Sælger>().FirstOrDefault(s => s.SælgerId.Equals(lodsalg.SælgerId));
-            //Lodseddel lodseddel = context.Set<Lodseddel>().FirstOrDefault(l => l.LodseddelId.Equals(lodsalg.LodseddelId));
+            
             if (lodsalg != null)
             {
-                Admin? Admin = context.Set<Admin>().FirstOrDefault(a => a.AdminId == lodsalg.Sælger.AdminId);
-                Leder? LederSælger = context.Set<Leder>().FirstOrDefault(l => l.LederId == lodsalg.Sælger.LederId);
-                Leder? LederModtager = context.Set<Leder>().FirstOrDefault(l => l.LederId == lodsalg.Modtager.LederId);
-                Barn? Barn = context.Set<Barn>().FirstOrDefault(b => b.BarnId == lodsalg.Modtager.BarnId);
+                //Modtager? modtager = lodsalg.Modtager; /*context.Set<Modtager>().FirstOrDefault(m => m.ModtagerId == lodsalg.ModtagerId);*/
+                //Sælger? sælger = lodsalg.Sælger; /*context.Set<Sælger>().FirstOrDefault(s => s.SælgerId == lodsalg.SælgerId);*/
+                //Lodseddel? lodseddel = lodsalg.Lodseddel; /*context.Set<Lodseddel>().FirstOrDefault(l => l.LodseddelId == lodsalg.LodseddelId);*/
+
+                var nyAfslutOverførsel = new Lodsalg();
+                nyAfslutOverførsel.Sælger = lodsalg.Sælger;
+                nyAfslutOverførsel.Modtager = lodsalg.Modtager;
+                nyAfslutOverførsel.Lodseddel = lodsalg.Lodseddel;
+
+                Admin? Admin = context.Set<Admin>().FirstOrDefault(a => a.AdminId == nyAfslutOverførsel.Sælger.AdminId);
+                Leder? LederSælger = context.Set<Leder>().FirstOrDefault(l => l.LederId == nyAfslutOverførsel.Sælger.LederId);
+                Leder? LederModtager = context.Set<Leder>().FirstOrDefault(l => l.LederId == nyAfslutOverførsel.Modtager.LederId);
+                Barn? Barn = context.Set<Barn>().FirstOrDefault(b => b.BarnId == nyAfslutOverførsel.Modtager.BarnId);
+
+                //Admin? Admin = context.Set<Admin>().FirstOrDefault(a => a.AdminId == sælger.AdminId);
+                //Leder? LederSælger = context.Set<Leder>().FirstOrDefault(l => l.LederId == sælger.LederId);
+                //Leder? LederModtager = context.Set<Leder>().FirstOrDefault(l => l.LederId == modtager.LederId);
+                //Barn? Barn = context.Set<Barn>().FirstOrDefault(b => b.BarnId == modtager.BarnId);
+
+                //Admin? Admin = context.Admins.Find(lodsalg.Sælger.AdminId);
+                //Leder? LederSælger = context.Ledere.Find(lodsalg.Sælger.LederId);
+                //Leder? LederModtager = context.Ledere.Find(lodsalg.Modtager.LederId);
+                //Barn? Barn = context.Børn.Find(lodsalg.Modtager.BarnId);
+
+                //Admin? Admin = context.Admins.Where(a => a.AdminId == lodsalg.Sælger.Admin.AdminId).FirstOrDefault();
+                //Leder? LederSælger = context.Ledere.Where(l => l.LederId == lodsalg.Sælger.Leder.LederId).FirstOrDefault();
+                //Leder? LederModtager = context.Ledere.Where(l => l.LederId == lodsalg.Modtager.Leder.LederId).FirstOrDefault();
+                //Barn? Barn = context.Børn.Where(b => b.BarnId == lodsalg.Modtager.Barn.BarnId).FirstOrDefault();
 
                 //kan først afslutte lodsalg hvis lederen ikke har nogen udleverede lodsedler til børn
                 if (lodsalg.Modtager.LederId != null && lodsalg.Sælger.AdminId != null && lodsalg.Modtager.Leder.Udleveret == 0)
@@ -254,9 +276,6 @@ namespace LodBasen.Services.EFServices
                     Admin.Antal = Admin.Antal + (Barn.Antal - solgt);
                     lodsalg.Lodseddel.Solgt = lodsalg.Lodseddel.Solgt + solgt;
                     Barn.Solgt = Barn.Solgt + solgt;
-                    LederModtager.Udleveret = LederModtager.Udleveret - Barn.Antal;
-                    context.Ledere.Update(LederModtager);
-                    context.SaveChanges();
                     context.Admins.Update(Admin);
                     context.SaveChanges();
                     context.Børn.Update(Barn);
