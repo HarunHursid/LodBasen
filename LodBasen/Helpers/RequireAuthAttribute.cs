@@ -26,6 +26,7 @@ namespace LodBasen.Helpers
                     context.Result = new RedirectResult("/");
                 }
             }
+
         }
 
         public void OnPageHandlerSelected(PageHandlerSelectedContext context)
