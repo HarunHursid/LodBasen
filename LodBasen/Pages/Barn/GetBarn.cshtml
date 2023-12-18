@@ -5,30 +5,27 @@
 }
 <link rel="stylesheet" href="~/css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-    body {
-        /*background: url('@Url.Content("~/images/bg2.jpg")');*/
-    }
-</style>
 
 <div class="table-container">
     <div class="headerh1">
-    <h1>Børn</h1>
+        <h1>Børn</h1>
 
-        <form method="get" class="form-inline">
-            <div class="input-group">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" asp-for="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <form method="get" class="form-inline">
+                <div class="input-group">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" asp-for="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
 
-    <a asp-page="/Barn/CreateBarn">
-        <input type="button" class="btn btn-outline-primary" value="Tilføj barn"/>
-    </a>
+        <a asp-page="/Barn/CreateBarn">
+            <input type="button" class="btn btn-outline-primary" value="Tilføj barn"/>
+        </a>
     </div>
+
     <hr />
+
     <table class="table table-striped rounded-table shadow p-3 mb-5 bg-white rounded">
         <thead class="t-head">
             <tr>
