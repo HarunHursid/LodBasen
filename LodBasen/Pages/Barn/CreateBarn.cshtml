@@ -3,48 +3,7 @@
 {
     ViewData["Title"] = "Create";
 }
-<link rel="stylesheet" href="~/css/style.css">
 
-
-<div class="table-container">
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="  ModelOnly  " class="text-danger">
-            </div>
-            <div class="form-group form-textfield">
-                <label asp-for="@Model.barn.Navn" class="control-label"></label>
-                <input asp-for="@Model.barn.Navn" class="form-control" />
-                <span asp-validation-for="@Model.barn.Navn" class="text-danger"></span>
-            </div>
-            <div class="form-group form-textfield">
-                <label asp-for="@Model.barn.Antal" class="control-label"></label>
-                <input asp-for="@Model.barn.Antal" class="form-control" value="0" />
-                <span asp-validation-for="@Model.barn.Antal" class="text-danger"></span>
-            </div>
-
-            <div class="form-group form-textfield">
-                <label asp-for="@Model.barn.Solgt" class="control-label"></label>
-                <input asp-for="@Model.barn.Solgt" class="form-control" value="0" />
-                <span asp-validation-for="@Model.barn.Solgt" class="text-danger"></span>
-            </div>
-            <div class="form-group form-textfield">
-                <label asp-for="SelectedGruppeNavn">Gruppenavn</label>
-                <select asp-for="SelectedGruppeNavn" asp-items="new SelectList(Model.GruppeNavnOptions)">
-                    <option value="">Gruppenavn</option>
-                </select>
-                <span asp-validation-for="SelectedGruppeNavn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-</div>  
-
-
-<!-- Add Material UI stylesheet -->
 <style>
     .form-control {
         background: #F2F2F2;
@@ -61,7 +20,7 @@
 
 <div class="banner">
     <div class="container p-5">
-        <div class="card mx-3 mt-n5 shadow-lg" style="border-radius:0px; border:none">
+        <div class="card mx-3 mt-n5 shadow-lg" style="border-radius:7px; border:none">
             <div class="card-body p-5">
                 <h4 class="card-title mb-3 text-dark text-uppercase" style="font-weight:700">Tilføj barn</h4>
 
