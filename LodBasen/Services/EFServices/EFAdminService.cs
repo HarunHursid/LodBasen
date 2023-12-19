@@ -28,9 +28,6 @@ namespace LodBasen.Services.EFServices
             context.SaveChanges();
         }
 
-
-      
-
         public Admin GetAdminById(int id)
         {
             return context.Admins.FirstOrDefault(a => a.AdminId == id);

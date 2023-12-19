@@ -28,16 +28,8 @@ namespace LodBasen.Services.EFServices
 
         public Gruppe GetGruppeById(int id)
         {
-                return context.Grupper.Find(id);
+            return context.Grupper.Find(id);
         }
-        //public void DeleteGruppe(Gruppe gruppe)
-        //{
-        //    if (gruppe != null)
-        //    {
-        //        context.Grupper.Remove(gruppe);
-        //        context.SaveChangesAsync();
-        //    }
-        //}
 
         public async Task DeleteGruppe(Gruppe gruppe)
         {

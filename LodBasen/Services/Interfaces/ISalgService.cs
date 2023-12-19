@@ -18,14 +18,8 @@ namespace LodBasen.Services.Interfaces
         public Lodsalg GetLodsalgById(int id);
 
         public void AfslutOverførsel(Lodsalg lodsalg, int solgtInput);
-
-
-        //public String GetSælgerNamebyId(int Id);
-        //public String GetModtagerNamebyId(int Id);
         public IEnumerable<Sælger> GetSælgere();
         public IEnumerable<Modtager> GetModtagere();
         public IEnumerable<Lodseddel> GetLodsedler();
-
-
     }
 }

@@ -17,8 +17,6 @@ namespace LodBasen.Services.Interfaces
         Gruppe GetGruppeById(int id);
         Gruppe GetGruppeByGruppeNavn(string gruppeNavn);
         List<string> GetAllGruppeNavn();
-
-        IEnumerable<int> GetSuperSælgerBarn();
-        
+        IEnumerable<int> GetSuperSælgerBarn();   
     }
 }

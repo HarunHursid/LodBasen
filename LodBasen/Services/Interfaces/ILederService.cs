@@ -13,6 +13,5 @@ namespace LodBasen.Services.Interfaces
         Leder GetLederById(int id);
         Gruppe GetGruppeByGruppeNavn(string gruppeNavn);
         List<string> GetAllGruppeNavn();
-
     }
 }

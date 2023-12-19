@@ -6,7 +6,5 @@ namespace LodBasen.Services.Interfaces
     {
         public IEnumerable<Sælger> Sælgere { get; set; }
         public IEnumerable<Sælger> GetSælgere();
-        
-
     }
 }

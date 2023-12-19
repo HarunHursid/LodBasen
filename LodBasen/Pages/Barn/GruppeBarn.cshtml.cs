@@ -19,7 +19,6 @@ namespace LodBasen.Pages.Barn
         }
         public void OnGet(int id)
         {
-            //Børn = barnService.GetBørnByGruppeId(id);
             var gruppe = barnService.GetGruppeById(id);
             GruppeNavn = gruppe?.GruppeNavn;
             Børn = barnService.GetBørnByGruppeId(id);

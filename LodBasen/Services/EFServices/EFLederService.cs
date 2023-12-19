@@ -32,7 +32,6 @@ namespace LodBasen.Services.EFServices
             context.SaveChanges();
         }
 
-
         public IEnumerable<Leder> GetLedereByGruppeId(int id)
         {
 
@@ -41,9 +40,7 @@ namespace LodBasen.Services.EFServices
 
         public Leder GetLederById(int id)
         {
-            return context.Ledere
-                .Include(l => l.Gruppe)
-                .FirstOrDefault(l => l.LederId == id);
+            return context.Ledere.Include(l => l.Gruppe).FirstOrDefault(l => l.LederId == id);
         }
 
         public void DeleteLeder(Leder leder)

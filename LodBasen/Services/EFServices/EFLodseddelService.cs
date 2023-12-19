@@ -13,7 +13,6 @@ namespace LodBasen.Services.EFServices
             context = service;
         }
 
-
         public IEnumerable<Lodseddel> Lodsedler { get; set; }
 
         public IEnumerable<Lodseddel> GetLodsedler()
@@ -21,8 +20,5 @@ namespace LodBasen.Services.EFServices
             Lodsedler = context.Lodsedler;
             return Lodsedler;
         }
-
-        
-
     }
 }

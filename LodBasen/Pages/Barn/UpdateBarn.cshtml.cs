@@ -20,7 +20,6 @@ namespace LodBasen.Pages.Barn
 
         public void OnGet(int id)
         {
-            //barn.BarnId = id;
             barn = BarnService.GetBarnById(id);
             GruppeNavnOptions = BarnService.GetAllGruppeNavn();
         }

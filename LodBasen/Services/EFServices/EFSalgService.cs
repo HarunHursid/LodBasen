@@ -14,11 +14,6 @@ namespace LodBasen.Services.EFServices
             context = service;
         }
 
-        //public int Udleveret { get; set; }
-
-        //public int Solgt { get; set; }  
-
-
         public IEnumerable<Sælger> Sælgere { get; set; }
 
         public IEnumerable<Modtager> Modtagere { get; set; }
@@ -106,8 +101,6 @@ namespace LodBasen.Services.EFServices
                     context.SaveChanges();
                     context.Lodsalgssamling.Add(nyOverførsel);
                     context.SaveChanges();
-                    //lodseddel.Antal -= antal;
-
                 }
             }
             if (sælger.AdminId != null && modtager.BarnId != null)
@@ -138,27 +131,8 @@ namespace LodBasen.Services.EFServices
                     context.SaveChanges();
                     context.Lodsalgssamling.Add(nyOverførsel);
                     context.SaveChanges();
-                    //lodseddel.Antal -= antal;
                 }
             }
-
-            // Opdater antallet på den relevante entitet (Admin, Barn eller Leder)
-            //if (sælger.Admin != null)
-            //{
-            //    sælger.Admin.Antal += antal;
-            //}
-            //else if (modtager.Barn != null)
-            //{
-            //    modtager.Barn.Antal += antal;
-            //}
-            //else if (modtager.Leder != null)
-            //{
-            //    modtager.Leder.Antal += antal;
-            //}
-
-            // Gem ændringer i databasen
-            //context.Lodsalgssamling.Add(nyOverførsel);
-            //context.SaveChanges();
         }
 
         public bool CheckAntalIsOkAdmin(Admin admin, int overførtAntal)
@@ -170,7 +144,6 @@ namespace LodBasen.Services.EFServices
             else
             {
                 return false;
-
             }
         }
 
@@ -183,23 +156,18 @@ namespace LodBasen.Services.EFServices
             else
             {
                 return false;
-
             }
         }
-
 
         public Lodsalg GetLodsalgById(int id)
         {
             return context.Set<Lodsalg>().Include(l => l.Sælger).Include(m => m.Modtager).Include(l => l.Lodseddel).FirstOrDefault(l => l.LodsalgsId == id);
         }
 
-
         public void AfslutOverførsel(Lodsalg lodsalg, int solgtInput)
         {
-            
             if (lodsalg != null)
             {
-                
                 Admin? Admin = context.Admins.FirstOrDefault(a => a.AdminId == lodsalg.Sælger.AdminId);
                 Leder? LederSælger = context.Set<Leder>().FirstOrDefault(l => l.LederId == lodsalg.Sælger.LederId);
                 Leder? LederModtager = context.Set<Leder>().FirstOrDefault(l => l.LederId == lodsalg.Modtager.LederId);
@@ -208,7 +176,6 @@ namespace LodBasen.Services.EFServices
                 //kan først afslutte lodsalg hvis lederen ikke har nogen udleverede lodsedler til børn
                 if (lodsalg.Modtager.LederId != null && lodsalg.Sælger.AdminId != null && lodsalg.Modtager.Leder.Udleveret == 0)
                 {
-
                     Admin.Antal = Admin.Antal + LederModtager.Antal;
                     Admin.Udleveret = Admin.Udleveret - LederModtager.Antal;
                     LederModtager.Antal = 0;
@@ -218,11 +185,10 @@ namespace LodBasen.Services.EFServices
                     context.SaveChanges();
                     context.Lodsalgssamling.Remove(lodsalg);
                     context.SaveChanges();
-
                 }
                 else if (lodsalg.Modtager.BarnId != null && lodsalg.Sælger.LederId != null && solgtInput <= lodsalg.Modtager.Barn.Antal)
                 {
-                    //ikke solgte lodsedler kommer retur til leder og solgte bliver lagt i lodseddel tabel
+                    //ikke solgte lodsedler kommer retur til leder og solgte bliver lagt i lodseddel tabel under solgt
                     LederSælger.Antal = LederSælger.Antal + (Barn.Antal - solgtInput);
                     LederSælger.Udleveret = LederSælger.Udleveret - Barn.Antal;
                     lodsalg.Lodseddel.Solgt = lodsalg.Lodseddel.Solgt + solgtInput;

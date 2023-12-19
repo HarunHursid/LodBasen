@@ -18,7 +18,6 @@ namespace LodBasen.Services.EFServices
             return this.context.Set<Barn>().Where(b => b.Navn.StartsWith(search)).AsNoTracking().ToList();
         }
 
-
         public IEnumerable<Barn> GetBørn()
         {
            // return context.Børn;
@@ -39,21 +38,12 @@ namespace LodBasen.Services.EFServices
 
         public IEnumerable<Barn> GetBørnByGruppeId(int id)
         {
-            //IEnumerable<Barn> listBørn = new IEnumerable<Barn>();
-            // listBørn = context.Set<Barn>().Where(b => b.GruppeId == id)
-            //      //.Include(b => b.Børn)
-            //      .AsNoTracking()
-            //     .FirstOrDefault(b => b.GruppeId == id);
-            // return børn;
-
             return this.context.Set<Barn>().Where(b => b.GruppeId == id).Include(g => g.Gruppe).AsNoTracking().ToList();
         }
 
         public Barn GetBarnById(int id)
         {
-            return context.Børn
-                .Include(b => b.Gruppe)
-                .FirstOrDefault(b => b.BarnId == id);
+            return context.Børn.Include(b => b.Gruppe).FirstOrDefault(b => b.BarnId == id);
 
         }
         public Gruppe GetGruppeById(int id)
@@ -61,14 +51,6 @@ namespace LodBasen.Services.EFServices
             return context.Grupper.FirstOrDefault(g => g.GruppeId == id);
         }
 
-        //public void DeleteBarn(Barn barn)
-        //{
-        //    if (barn != null)
-        //    {
-        //        context.Børn.Remove(barn);
-        //        context.SaveChanges();
-        //    }
-        //}
         public void DeleteBarn(Barn barn)
         {
             if (barn != null)
@@ -89,30 +71,16 @@ namespace LodBasen.Services.EFServices
         }
         public IQueryable<Barn> GetBørnQuery(string search)
         {
-            // Implement your search logic and return IQueryable
-            // For example:
             return context.Børn.Where(b => b.Navn.Contains(search)).AsQueryable();
         }
 
         public IQueryable<Barn> GetBørnQuery()
         {
-            // Implement logic to return all Børn as IQueryable
             return context.Børn.AsQueryable();
         }
 
         public IEnumerable<int> GetSuperSælgerBarn()
         {
-            //    var solgtListe = new List<int>();
-            //    var børnListe = context.Børn.AsNoTracking().ToList();   
-
-            //    foreach(var item in børnListe) 
-            //    {
-            //        int Solgt = item.Solgt;
-            //        solgtListe.Add(Solgt);  
-            //    }
-
-            //    solgtListe.OrderByDescending();
-            //    return solgtListe;
             IEnumerable<Barn> børnListe = context.Børn.AsNoTracking().ToList();
 
             IEnumerable<int> solgtListe = børnListe.Select(item => item.Solgt).ToList();

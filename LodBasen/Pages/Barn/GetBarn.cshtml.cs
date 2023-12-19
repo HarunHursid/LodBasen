@@ -37,7 +37,6 @@ namespace LodBasen.Pages.Barn
         [BindProperty(SupportsGet = true)]
         public string Search { get; set; }
         public PaginatedList<Models.Barn> Børn { get; set; }
-        //public IEnumerable<Models.Barn> Børn { get; set; }
 
         IBarnService barnService { get; set; }
         public GetBarnModel(IBarnService service)

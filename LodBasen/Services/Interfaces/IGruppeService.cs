@@ -10,7 +10,6 @@ namespace LodBasen.Services.Interfaces
         void AddGruppe(Gruppe gruppe);
         //void DeleteGruppe(Gruppe gruppe);
         Task DeleteGruppe(Gruppe gruppe);
-        
         Gruppe GetGruppeById(int id);
     }
 }

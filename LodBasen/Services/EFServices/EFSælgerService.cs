@@ -19,16 +19,9 @@ namespace LodBasen.Services.EFServices
         }
         public IEnumerable<Sælger> Sælgere { get; set; }
 
-        //public void AddSælger() 
-        //{
-        //    context.Sælgere.Add();
-        //    context.SaveChanges();
-        //}
-
         public IEnumerable<Sælger> GetSælgere()
         {
             return Sælgere = context.Sælgere.Include(a => a.Admin).Include(l => l.Leder).AsNoTracking().ToList();
-
         }
 
         public Sælger GetSælgerIdByAdmin(int adminId) 
@@ -40,8 +33,5 @@ namespace LodBasen.Services.EFServices
         {
             return (Sælger)context.Set<Sælger>().Where(l => l.LederId == lederId).Include(l => l.Leder);
         }
-
-     
-
     }
 }
