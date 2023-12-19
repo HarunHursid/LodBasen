@@ -13,6 +13,7 @@ namespace LodBasen.Services.EFServices
             context = service;
         }
 
+
         public IEnumerable<Lodseddel> Lodsedler { get; set; }
 
         public IEnumerable<Lodseddel> GetLodsedler()

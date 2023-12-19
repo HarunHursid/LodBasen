@@ -17,6 +17,8 @@ namespace LodBasen.Services.EFServices
         {
             return this.context.Set<Barn>().Where(b => b.Navn.StartsWith(search)).AsNoTracking().ToList();
         }
+
+
         public IEnumerable<Barn> GetBørn()
         {
            // return context.Børn;

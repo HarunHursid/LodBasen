@@ -14,7 +14,10 @@ namespace LodBasen.Services.EFServices
             context = service;
         }
 
-        public int Udleveret { get; set; }
+        //public int Udleveret { get; set; }
+
+        //public int Solgt { get; set; }  
+
 
         public IEnumerable<Sælger> Sælgere { get; set; }
 
@@ -185,67 +188,29 @@ namespace LodBasen.Services.EFServices
         }
 
 
-
-
-
-
-        //public Sælger GetSælgerById(int id)
-        //{
-        //    return (Sælger)context.Sælgere.Where(s => s.SælgerId.Equals(id)).AsNoTracking();  
-        //}
-
-        //public Modtager GetModtagerById(int id)
-        //{
-        //    return (Modtager)context.Modtagere.Where(s => s.ModtagerId.Equals(id)).AsNoTracking();
-        //}
-
-
         public Lodsalg GetLodsalgById(int id)
         {
-            return context.Set<Lodsalg>().FirstOrDefault(l => l.LodsalgsId == id);
+            return context.Set<Lodsalg>().Include(l => l.Sælger).Include(m => m.Modtager).Include(l => l.Lodseddel).FirstOrDefault(l => l.LodsalgsId == id);
         }
 
 
-        public void AfslutOverførsel(Lodsalg lodsalg, int solgt)
+        public void AfslutOverførsel(Lodsalg lodsalg, int solgtInput)
         {
             
             if (lodsalg != null)
             {
-                //Modtager? modtager = lodsalg.Modtager; /*context.Set<Modtager>().FirstOrDefault(m => m.ModtagerId == lodsalg.ModtagerId);*/
-                //Sælger? sælger = lodsalg.Sælger; /*context.Set<Sælger>().FirstOrDefault(s => s.SælgerId == lodsalg.SælgerId);*/
-                //Lodseddel? lodseddel = lodsalg.Lodseddel; /*context.Set<Lodseddel>().FirstOrDefault(l => l.LodseddelId == lodsalg.LodseddelId);*/
-
-                var nyAfslutOverførsel = new Lodsalg();
-                nyAfslutOverførsel.Sælger = lodsalg.Sælger;
-                nyAfslutOverførsel.Modtager = lodsalg.Modtager;
-                nyAfslutOverførsel.Lodseddel = lodsalg.Lodseddel;
-
-                Admin? Admin = context.Set<Admin>().FirstOrDefault(a => a.AdminId == nyAfslutOverførsel.Sælger.AdminId);
-                Leder? LederSælger = context.Set<Leder>().FirstOrDefault(l => l.LederId == nyAfslutOverførsel.Sælger.LederId);
-                Leder? LederModtager = context.Set<Leder>().FirstOrDefault(l => l.LederId == nyAfslutOverførsel.Modtager.LederId);
-                Barn? Barn = context.Set<Barn>().FirstOrDefault(b => b.BarnId == nyAfslutOverførsel.Modtager.BarnId);
-
-                //Admin? Admin = context.Set<Admin>().FirstOrDefault(a => a.AdminId == sælger.AdminId);
-                //Leder? LederSælger = context.Set<Leder>().FirstOrDefault(l => l.LederId == sælger.LederId);
-                //Leder? LederModtager = context.Set<Leder>().FirstOrDefault(l => l.LederId == modtager.LederId);
-                //Barn? Barn = context.Set<Barn>().FirstOrDefault(b => b.BarnId == modtager.BarnId);
-
-                //Admin? Admin = context.Admins.Find(lodsalg.Sælger.AdminId);
-                //Leder? LederSælger = context.Ledere.Find(lodsalg.Sælger.LederId);
-                //Leder? LederModtager = context.Ledere.Find(lodsalg.Modtager.LederId);
-                //Barn? Barn = context.Børn.Find(lodsalg.Modtager.BarnId);
-
-                //Admin? Admin = context.Admins.Where(a => a.AdminId == lodsalg.Sælger.Admin.AdminId).FirstOrDefault();
-                //Leder? LederSælger = context.Ledere.Where(l => l.LederId == lodsalg.Sælger.Leder.LederId).FirstOrDefault();
-                //Leder? LederModtager = context.Ledere.Where(l => l.LederId == lodsalg.Modtager.Leder.LederId).FirstOrDefault();
-                //Barn? Barn = context.Børn.Where(b => b.BarnId == lodsalg.Modtager.Barn.BarnId).FirstOrDefault();
+                
+                Admin? Admin = context.Admins.FirstOrDefault(a => a.AdminId == lodsalg.Sælger.AdminId);
+                Leder? LederSælger = context.Set<Leder>().FirstOrDefault(l => l.LederId == lodsalg.Sælger.LederId);
+                Leder? LederModtager = context.Set<Leder>().FirstOrDefault(l => l.LederId == lodsalg.Modtager.LederId);
+                Barn? Barn = context.Set<Barn>().FirstOrDefault(b => b.BarnId == lodsalg.Modtager.BarnId);
 
                 //kan først afslutte lodsalg hvis lederen ikke har nogen udleverede lodsedler til børn
                 if (lodsalg.Modtager.LederId != null && lodsalg.Sælger.AdminId != null && lodsalg.Modtager.Leder.Udleveret == 0)
                 {
 
                     Admin.Antal = Admin.Antal + LederModtager.Antal;
-                    Admin.Udleveret = Admin.Udleveret + LederModtager.Antal;
+                    Admin.Udleveret = Admin.Udleveret - LederModtager.Antal;
                     LederModtager.Antal = 0;
                     context.Ledere.Update(LederModtager);
                     context.SaveChanges();
@@ -255,15 +220,14 @@ namespace LodBasen.Services.EFServices
                     context.SaveChanges();
 
                 }
-                else if (lodsalg.Modtager.BarnId != null && lodsalg.Sælger.LederId != null && solgt <= lodsalg.Modtager.Barn.Antal)
+                else if (lodsalg.Modtager.BarnId != null && lodsalg.Sælger.LederId != null && solgtInput <= lodsalg.Modtager.Barn.Antal)
                 {
                     //ikke solgte lodsedler kommer retur til leder og solgte bliver lagt i lodseddel tabel
-                    LederSælger.Antal = LederSælger.Antal + (Barn.Antal - solgt);
+                    LederSælger.Antal = LederSælger.Antal + (Barn.Antal - solgtInput);
                     LederSælger.Udleveret = LederSælger.Udleveret - Barn.Antal;
-                    lodsalg.Lodseddel.Solgt = lodsalg.Lodseddel.Solgt + solgt;
-                    Barn.Solgt = Barn.Solgt + solgt;
-                    context.Admins.Update(Admin);
-                    context.SaveChanges();
+                    lodsalg.Lodseddel.Solgt = lodsalg.Lodseddel.Solgt + solgtInput;
+                    Barn.Solgt = Barn.Solgt + solgtInput;
+                    Barn.Antal = 0;
                     context.Ledere.Update(LederSælger);
                     context.SaveChanges();
                     context.Børn.Update(Barn);
@@ -271,11 +235,12 @@ namespace LodBasen.Services.EFServices
                     context.Lodsalgssamling.Remove(lodsalg);
                     context.SaveChanges();
                 }
-                else if (lodsalg.Modtager.BarnId != null && lodsalg.Sælger.AdminId != null && solgt <= lodsalg.Modtager.Barn.Antal)
+                else if (lodsalg.Modtager.BarnId != null && lodsalg.Sælger.AdminId != null && solgtInput <= lodsalg.Modtager.Barn.Antal)
                 {
-                    Admin.Antal = Admin.Antal + (Barn.Antal - solgt);
-                    lodsalg.Lodseddel.Solgt = lodsalg.Lodseddel.Solgt + solgt;
-                    Barn.Solgt = Barn.Solgt + solgt;
+                    Admin.Antal = Admin.Antal + (Barn.Antal - solgtInput);
+                    lodsalg.Lodseddel.Solgt = lodsalg.Lodseddel.Solgt + solgtInput;
+                    Barn.Solgt = Barn.Solgt + solgtInput;
+                    Barn.Antal = 0;
                     context.Admins.Update(Admin);
                     context.SaveChanges();
                     context.Børn.Update(Barn);

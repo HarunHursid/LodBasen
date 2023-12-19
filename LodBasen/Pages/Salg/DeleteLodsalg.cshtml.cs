@@ -17,7 +17,7 @@ namespace LodBasen.Pages.Salg
         public Models.Lodsalg lodsalg{ get; set; }
 
         [BindProperty]
-        public int Solgt { get; set; }  
+        public int solgtInput { get; set; }  
 
         ISalgService salgService;
 
@@ -29,11 +29,12 @@ namespace LodBasen.Pages.Salg
         {
             lodsalg = salgService.GetLodsalgById(id);
         }
-        public IActionResult OnPost()
+        public IActionResult OnPost(int id)
         {
-            salgService.AfslutOverførsel(lodsalg, Solgt);
+            Lodsalg lodsalg = salgService.GetLodsalgById(id);
+            salgService.AfslutOverførsel(lodsalg, solgtInput);
 
-            return RedirectToPage("Salg/GetLodsalg");
+            return RedirectToPage("/Salg/GetLodsalg");
         }
     }
 }
