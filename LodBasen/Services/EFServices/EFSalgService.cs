@@ -130,7 +130,7 @@ namespace LodBasen.Services.EFServices
                 if (CheckAntalIsOkLeder(LederSælger, antal))
                 {
                     LederSælger.Antal = LederSælger.Antal - antal;
-                    LederSælger.Udleveret = LederSælger.Antal + antal;
+                    LederSælger.Udleveret = LederSælger.Udleveret + antal;
                     context.Ledere.Update(LederSælger);
                     context.SaveChanges();
                     Barn.Antal = Barn.Antal + antal;
