@@ -4,40 +4,35 @@
     ViewData["Title"] = "GetSuperSælger";
 }
 
-<h1> Super Sælger </h1>
+<div class="table-container">
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>  </th>
-            <th>  </th>
-           
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td> 1 </td>
-            <td> @Model.SuperSælgere.ElementAt(0) </td>
-        </tr>
-     
-    </tbody>
-    <tbody>
-        <tr>
-            <td> 2 </td>
-            <td> @Model.SuperSælgere.ElementAt(1) </td>
-        </tr>
-    </tbody> 
-    <tbody>
-        <tr>
-            <td> 3 </td>
-            <td> @Model.SuperSælgere.ElementAt(2) </td>
-        </tr>
-    </tbody>
+    <div class="header1">
+        <h1> Supersælger </h1>
+    </div>
 
-
-
-</table>
-
+    <table class="table table-striped rounded-table shadow p-3 mb-5 bg-white rounded">
+        <thead class="t-head">
+            <tr>
+                <th class="th-item"> Rangering </th>
+                <th class="th-item"> Solgte lodsedler </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> 1 </td>
+                <td> @Model.SuperSælgere.ElementAt(0) </td>
+            </tr>
+            <tr>
+                <td> 2 </td>
+                <td> @Model.SuperSælgere.ElementAt(1) </td>
+            </tr>
+            <tr>
+                <td> 3 </td>
+                <td> @Model.SuperSælgere.ElementAt(2) </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 
 
