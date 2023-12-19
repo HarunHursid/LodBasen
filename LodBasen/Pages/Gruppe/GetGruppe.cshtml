@@ -8,22 +8,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="table-container">
+
     <div class="headerh1">
-    <h1>Grupper</h1>
+        <h1>Grupper</h1>
 
-@*     <form>
-    <p>
-    Search: <input type="text" asp-for="Search" />
-    <input type="submit" value="Filter" />
-    <a asp-page="/Gruppe/GetGruppe">Back to Full List </a>
-    </p>
-    </form> *@
-
-    <a asp-page="/Gruppe/CreateGruppe">
-        <input type="button" class="btn btn-outline-primary" value="Tilføj gruppe" />
-    </a>
+        <a asp-page="/Gruppe/CreateGruppe">
+            <input type="button" class="btn btn-outline-primary" value="Tilføj gruppe" />
+        </a>
     </div>
+
     <hr />
+
     <table class="table table-striped rounded-table shadow p-3 mb-5 bg-white rounded">
         <thead class="t-head">
             <tr>
@@ -32,7 +27,6 @@
                 <th class="th-item th-knap"></th>
                 <th class="th-item th-knap"></th>
             </tr>
-
         </thead>
         <tbody>
 

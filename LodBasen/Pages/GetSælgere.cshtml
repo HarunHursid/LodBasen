@@ -20,7 +20,6 @@
             @foreach (var item in Model.Sælgere.Where(item => item.AdminId != null))
             {
                 <tr>
-                    @* <td>  @item.SælgerId </td>*@
                     <td>  @item.AdminId </td>
                     <td> @item.Admin.Navn</td>
                 </tr>

@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using LodBasen.Services.Interfaces;
 using LodBasen.Models;
 using LodBasen.Services.EFServices;
+using LodBasen.Helpers;
 
 namespace LodBasen.Pages.Barn
 {
+    [RequireAuth(RequiredRole = "Admin")]
     public class UpdateBarnModel : PageModel
     {
         [BindProperty]
@@ -31,6 +33,7 @@ namespace LodBasen.Pages.Barn
 
         public IActionResult OnPost()
         {
+            
             if (!ModelState.IsValid)
             {
                 return Page();

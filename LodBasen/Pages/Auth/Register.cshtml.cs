@@ -13,7 +13,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LodBasen.Pages.Auth
 {
-	[RequireNoAuth]
+    [RequireNoAuth]
     [BindProperties]
     public class RegisterModel : PageModel
     {

@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using LodBasen.Models;
 using LodBasen.Services.EFServices;
 using Microsoft.EntityFrameworkCore;
-
+using LodBasen.Helpers;
 
 namespace LodBasen.Pages.Barn
 {
+    [RequireAuth]
     public class PaginatedList<T> : List<T>
     {
         public int PageIndex { get; private set; }
@@ -57,6 +58,7 @@ namespace LodBasen.Pages.Barn
                 IQueryable<Models.Barn> allBørnQuery = barnService.GetBørnQuery().Include(b => b.Gruppe);
                 Børn = PaginatedList<Models.Barn>.Create(allBørnQuery, pageIndex ?? 1, pageSize);
             }
+
         }
     }
 }

@@ -1,9 +1,11 @@
+using LodBasen.Helpers;
 using LodBasen.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LodBasen.Pages.Lodseddel
 {
+    [RequireAuth(RequiredRole = "Admin")]
     public class GetLodseddelModel : PageModel
     {
         [BindProperty]

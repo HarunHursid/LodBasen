@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using LodBasen.Services.Interfaces;
+using LodBasen.Helpers;
 
 namespace LodBasen.Pages.Leder
 {
+    [RequireAuth(RequiredRole = "Admin")]
     public class GetLederModel : PageModel
     {
         [BindProperty(SupportsGet = true)]
