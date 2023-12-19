@@ -17,7 +17,7 @@ namespace LodBasen.Services.Interfaces
 
         public Lodsalg GetLodsalgById(int id);
 
-        public void AfslutOverførsel(Lodsalg lodsalg, int solgt);
+        public void AfslutOverførsel(Lodsalg lodsalg, int solgtInput);
 
 
         //public String GetSælgerNamebyId(int Id);

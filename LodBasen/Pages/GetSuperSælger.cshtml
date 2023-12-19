@@ -1,0 +1,44 @@
+﻿@page
+@model LodBasen.Pages.GetSuperSælgerModel
+@{
+    ViewData["Title"] = "GetSuperSælger";
+}
+
+<h1> Super Sælger </h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>  </th>
+            <th>  </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> 1 </td>
+            <td> @Model.SuperSælgere.ElementAt(0) </td>
+        </tr>
+     
+    </tbody>
+    <tbody>
+        <tr>
+            <td> 2 </td>
+            <td> @Model.SuperSælgere.ElementAt(1) </td>
+        </tr>
+    </tbody> 
+    <tbody>
+        <tr>
+            <td> 3 </td>
+            <td> @Model.SuperSælgere.ElementAt(2) </td>
+        </tr>
+    </tbody>
+
+
+
+</table>
+
+
+
+
+ 

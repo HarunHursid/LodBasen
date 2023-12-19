@@ -1,6 +1,7 @@
 ﻿using LodBasen.Models;
 using LodBasen.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore;
 using System.Linq;
 
 namespace LodBasen.Services.EFServices
@@ -16,6 +17,8 @@ namespace LodBasen.Services.EFServices
         {
             return this.context.Set<Barn>().Where(b => b.Navn.StartsWith(search)).AsNoTracking().ToList();
         }
+
+
         public IEnumerable<Barn> GetBørn()
         {
            // return context.Børn;
@@ -97,9 +100,26 @@ namespace LodBasen.Services.EFServices
             return context.Børn.AsQueryable();
         }
 
-        public int GetSuperSælgerBarn()
+        public IEnumerable<int> GetSuperSælgerBarn()
         {
-            return context.Børn.Max(b => b.Solgt);
+            //    var solgtListe = new List<int>();
+            //    var børnListe = context.Børn.AsNoTracking().ToList();   
+
+            //    foreach(var item in børnListe) 
+            //    {
+            //        int Solgt = item.Solgt;
+            //        solgtListe.Add(Solgt);  
+            //    }
+
+            //    solgtListe.OrderByDescending();
+            //    return solgtListe;
+            IEnumerable<Barn> børnListe = context.Børn.AsNoTracking().ToList();
+
+            IEnumerable<int> solgtListe = børnListe.Select(item => item.Solgt).ToList();
+
+            solgtListe = solgtListe.OrderByDescending(x => x).ToList();
+
+            return solgtListe;
         }
     }
 }
