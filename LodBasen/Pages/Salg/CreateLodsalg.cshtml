@@ -5,21 +5,36 @@
 }
 <link rel="stylesheet" href="~/css/style.css">
 
+<style>
+    .form-control {
+        background: #F2F2F2;
+        border-radius: 7px;
+        border: none;
+    }
 
-<div class="table-container">
-    <div class="row">
-        <div class="col-md-4">
+    .banner {
+        width: 80%;
+        margin: auto;
+        border-radius: 5px;
+    }
+</style>
+
+<div class="banner">
+    <div class="container p-5">
+        <div class="card mx-3 mt-n5 shadow-lg" style="border-radius:7px; border:none">
+            <div class="card-body p-5">
+                <h4 class="card-title mb-3 text-dark text-uppercase" style="font-weight:700">Tilføj barn</h4>
             <form method="post">
                 <div asp-validation-summary="  ModelOnly  " class="text-danger">
                 </div>
 
-                <div class="form-group form-textfield">
-                    <label asp-for="SelectedSælgerId">Sælger</label>
-                    <select asp-for="SelectedSælgerId" asp-items="@Model.SælgerOptions">
-                        <option value="">Vælg Sælger</option>
-                    </select>
-                    <span asp-validation-for="SelectedSælgerId" class="text-danger"></span>
-                </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-control" id="floatingSelect" asp-for="SelectedSælgerId" asp-items="@Model.SælgerOptions">
+                            <option value=""></option>
+                        </select>
+                        <label for="floatingSelect" asp-for="SelectedSælgerId">Vælg sælger</label>
+                        <span asp-validation-for="SelectedSælgerId" class="text-danger"></span>
+                    </div>
 
                 <div class="form-group form-textfield">
                     <label asp-for="Antal">Antal</label>
@@ -27,67 +42,28 @@
                     <span asp-validation-for="Antal" class="text-danger"></span>
                 </div>
 
-                <div class="form-group form-textfield">
-                    <label asp-for="SelectedLodseddelId">LodseddelId</label>
-                    <select asp-for="SelectedLodseddelId" asp-items="@Model.LodseddelOptions">
-                        <option value="">Vælg Lodseddel</option>
-                    </select>
-                    <span asp-validation-for="SelectedLodseddelId" class="text-danger"></span>
-                </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-control" id="floatingSelect" asp-for="SelectedLodseddelId" asp-items="@Model.LodseddelOptions">
+                            <option value=""></option>
+                        </select>
+                        <label for="floatingSelect" asp-for="SelectedLodseddelId">Vælg lodseddel</label>
+                        <span asp-validation-for="SelectedLodseddelId" class="text-danger"></span>
+                    </div>
 
-                <div class="form-group form-textfield">
-                    <label asp-for="SelectedModtagerId">Modtager</label>
-                    <select asp-for="SelectedModtagerId" asp-items="@Model.ModtagerOptions">
-                        <option value="">Vælg Modtager</option>
-                    </select>
-                    <span asp-validation-for="SelectedModtagerId" class="text-danger"></span>
-                </div>
-
+                    <div class="form-floating mb-3">
+                        <select class="form-control" id="floatingSelect" asp-for="SelectedModtagerId" asp-items="@Model.ModtagerOptions">
+                            <option value=""></option>
+                        </select>
+                        <label for="floatingSelect" asp-for="SelectedModtagerId">Vælg modtager</label>
+                        <span asp-validation-for="SelectedModtagerId" class="text-danger"></span>
+                    </div>
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <input type="submit" value="Tilføj overførsel" class="btn btn-primary" />
                 </div>
             </form>
         </div>
     </div>
 </div>
+</div>
 
-@* <div class="table-container">
-    <div class="row">
-        <div class="col-md-4">
-            <form method="post">
-                <div asp-validation-summary="  ModelOnly  " class="text-danger">
-                </div>
-                <div class="form-group form-textfield">
-                    <label asp-for="SelectedModtager">Modtager</label>
-                    <select asp-for="SelectedModtager" asp-items="new SelectList(Model.ModtagerOptions)">
-                        <option value="">Modtager</option>
-                    </select>
-                    <span asp-validation-for="SelectedModtager" class="text-danger"></span>
-                </div>
-                <div class="form-group form-textfield">
-                    <label asp-for="@Model.lodsalg.Antal" class="control-label"></label>
-                    <input asp-for="@Model.lodsalg.Antal" class="form-control" value="0" />
-                    <span asp-validation-for="@Model.lodsalg.Antal" class="text-danger"></span>
-                </div>
-
-                <div class="form-group form-textfield">
-                    <label asp-for="SelectedLodseddelId">LodseddelId</label>
-                    <select asp-for="SelectedLodseddelId" asp-items="new SelectList(Model.LodseddelIdOptions)">
-                        <option value="">LodseddelId</option>
-                    </select>
-                    <span asp-validation-for="SelectedLodseddelId" class="text-danger"></span>
-                </div>
-                <div class="form-group form-textfield">
-                    <label asp-for="SelectedAfsender">Afsender</label>
-                    <select asp-for="SelectedAfsender" asp-items="new SelectList(Model.AfsenderOptions)">
-                        <option value="">Gruppenavn</option>
-                    </select>
-                    <span asp-validation-for="SelectedAfsender" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
-        </div>
-    </div>
-</div> *@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
