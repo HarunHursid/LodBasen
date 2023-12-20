@@ -204,6 +204,7 @@ namespace LodBasen.Services.EFServices
                 else if (lodsalg.Modtager.BarnId != null && lodsalg.Sælger.AdminId != null && solgtInput <= lodsalg.Modtager.Barn.Antal)
                 {
                     Admin.Antal = Admin.Antal + (Barn.Antal - solgtInput);
+                    Admin.Udleveret = Admin.Udleveret - Barn.Antal;
                     lodsalg.Lodseddel.Solgt = lodsalg.Lodseddel.Solgt + solgtInput;
                     Barn.Solgt = Barn.Solgt + solgtInput;
                     Barn.Antal = 0;
