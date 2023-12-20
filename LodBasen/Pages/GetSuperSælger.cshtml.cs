@@ -9,6 +9,7 @@ namespace LodBasen.Pages
 {
     public class GetSuperSælgerModel : PageModel
     {
+        [RequireNoAuth]
         
         [BindProperty(SupportsGet = true)]
         public IEnumerable<int> SuperSælgere { get; set; }
