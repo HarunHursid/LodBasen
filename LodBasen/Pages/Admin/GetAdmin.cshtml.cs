@@ -12,16 +12,19 @@ namespace LodBasen.Pages.Admin
 
         public IEnumerable<Models.Admin> Admins { get; set; }
 
+        public IEnumerable<Models.Lodseddel> LodseddelInfo { get; set; }
+
         IAdminService AdminService { get; set; }
 
         public GetAdminModel(IAdminService service)
         {
-                AdminService = service;
+            AdminService = service;
         }
         public void OnGet()
         {
-                Admins = AdminService.GetAdmins();
+            LodseddelInfo = AdminService.GetLodsalgForAdmin();
+            Admins = AdminService.GetAdmins();
+
         }
     }
-    
 }

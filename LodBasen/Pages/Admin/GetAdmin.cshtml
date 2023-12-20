@@ -20,22 +20,33 @@
         <tr>
             <th class="th-item"> Navn </th>
             <th class="th-item"> Antal lodsedler</th>
-            <th class="th-item">Udleverede lodsedler</th>
+            <th class="th-item"> Udleverede lodsedler </th>
+            <th class="th-item"> Antal ialt </th>
+            <th class="th-item"> Solgte lodsedler </th>
         </tr>
     </thead>
     <tbody>
 
         @if (Model != null)
         {
-            @foreach (var item in Model.Admins)
-            {
-                <tr>
-                    <td> @item.Navn</td>
-                    <td> @item.Antal</td>
-                    <td> @item.Udleveret</td>
-                </tr>
-            }
+                @foreach (var item in Model.Admins)
+                {
+                    <tr>
+                        <td> @item.Navn</td>
+                        <td> @item.Antal</td>
+                        <td> @item.Udleveret</td> 
+
+                            @foreach (var item1 in Model.LodseddelInfo)
+                            {
+                                <td> @item1.Antal</td>
+                                <td> @item1.Solgt</td>
+                            }
+                    </tr>
+                }
+               
         }
+
+       
 
     </tbody>
 </table>

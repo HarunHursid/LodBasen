@@ -23,15 +23,29 @@ namespace LodBasen.Services.EFServices
            // return context.Børn;
             return context.Børn.Include(b => b.Gruppe).AsNoTracking().ToList(); ;
         }
+
+        public void AddBarnToModtager(Barn barn)
+        {
+            Modtager modtager = new Modtager();
+            modtager.BarnId = barn.BarnId;
+            context.Modtagere.Add(modtager);
+        }
+        public void RemoveBarnFromModtager(Barn barn)
+        {
+            Modtager modtager = context.Set<Modtager>().Where(b => b.BarnId == barn.BarnId).FirstOrDefault();
+            context.Modtagere.Remove(modtager);
+            context.SaveChanges();
+        }
         public void AddBarn(Barn barn)
         {
             context.Børn.Add(barn);
+            context.SaveChanges();
+            AddBarnToModtager(barn);
             context.SaveChanges();
         }
 
         public void UpdateBarn(Barn barn)
         {
-
             context.Børn.Update(barn);
             context.SaveChanges();
         }
@@ -55,6 +69,8 @@ namespace LodBasen.Services.EFServices
         {
             if (barn != null)
             {
+                RemoveBarnFromModtager(barn);
+                context.SaveChanges();
                 var modtagere = context.Modtagere.Where(m => m.BarnId == barn.BarnId);
                 context.Modtagere.RemoveRange(modtagere);
                 context.Børn.Remove(barn);

@@ -7,6 +7,8 @@ namespace LodBasen.Services.Interfaces
         IEnumerable<Leder> GetLedere(string search);
         IEnumerable<Leder> GetLedere();
         void DeleteLeder(Leder leder);
+        void AddLederToModtagerAndSælger(Leder leder);
+        void RemoveLederFromModtagerAndSælger(Leder leder);
         void AddLeder(Leder leder);
         void UpdateLeder(Leder leder);
         IEnumerable<Leder> GetLedereByGruppeId(int id);
