@@ -4,14 +4,23 @@
     ViewData["Title"] = "GetAdmin";
 }
 
-<h1> Admin </h1>
+<link rel="stylesheet" href="~/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<table class="table">
-    <thead>
+<div class="table-container">
+
+    <div class="headerh1">
+        <h1>Admin</h1>
+    </div>
+
+    <hr />
+
+<table class="table table-striped rounded-table shadow p-3 mb-5 bg-white rounded">
+    <thead class="t-head">
         <tr>
-            <th> Navn </th>
-            <th> Antal lodsedler</th>
-            <th> Udleverede lodsedler</th>
+            <th class="th-item"> Navn </th>
+            <th class="th-item"> Antal lodsedler</th>
+            <th class="th-item">Udleverede lodsedler</th>
         </tr>
     </thead>
     <tbody>
@@ -30,3 +39,4 @@
 
     </tbody>
 </table>
+</div>
