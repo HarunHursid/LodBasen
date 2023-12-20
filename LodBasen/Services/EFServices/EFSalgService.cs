@@ -96,7 +96,7 @@ namespace LodBasen.Services.EFServices
                     Admin.Udleveret = Admin.Udleveret + antal;
                     context.Admins.Update(Admin);
                     context.SaveChanges();
-                    LederModtager.Antal = LederModtager.Antal + LederModtager.Antal + antal;
+                    LederModtager.Antal = LederModtager.Antal + antal;
                     context.Ledere.Update(LederModtager);
                     context.SaveChanges();
                     context.Lodsalgssamling.Add(nyOverførsel);
