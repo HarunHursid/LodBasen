@@ -25,16 +25,7 @@ namespace LodBasen.Pages.Auth
         public string errorMessage = "";
         public string successMessage = "";
 
-        public override void OnPageHandlerExecuting(PageHandlerExecutingContext context)
-        {
-            base.OnPageHandlerExecuting(context);
 
-            if (HttpContext.Session.GetString("role") != null) 
-            {
-                context.Result = new RedirectResult("/");
-            }
-
-        }
         public void OnGet()
         {
         }
