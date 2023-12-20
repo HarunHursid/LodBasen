@@ -1,9 +1,7 @@
+using LodBasen.Helpers;
 using LodBasen.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Diagnostics;
-using LodBasen.Models;
-using LodBasen.Helpers;
 
 namespace LodBasen.Pages.Leder
 {
@@ -24,6 +22,7 @@ namespace LodBasen.Pages.Leder
             leder = LederService.GetLederById(id);
 
             GruppeNavnOptions = LederService.GetAllGruppeNavn();
+            SelectedGruppeNavn = leder.Gruppe?.GruppeNavn;
         }
 
         ILederService LederService;
