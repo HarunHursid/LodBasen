@@ -33,6 +33,7 @@ namespace LodBasen
             services.AddTransient<IModtagerService, EFModtagerService>();   
             services.AddTransient<ISalgService, EFSalgService>();   
             services.AddTransient<ILodseddelService, EFLodseddelService>();
+            services.AddTransient<IAdminService, EFAdminService>();
 
         }
 

@@ -1,0 +1,32 @@
+﻿@page
+@model LodBasen.Pages.Admin.GetAdminModel
+@{
+    ViewData["Title"] = "GetAdmin";
+}
+
+<h1> Admin </h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th> Navn </th>
+            <th> Antal lodsedler</th>
+            <th> Udleverede lodsedler</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model != null)
+        {
+            @foreach (var item in Model.Admins)
+            {
+                <tr>
+                    <td> @item.Navn</td>
+                    <td> @item.Antal</td>
+                    <td> @item.Udleveret</td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
