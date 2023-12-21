@@ -20,9 +20,29 @@ namespace LodBasen.Services.EFServices
         {
             return context.Ledere.Include(l => l.Gruppe).AsNoTracking().ToList();
         }
+        public void AddLederToModtagerAndSælger(Leder leder)
+        {
+            Modtager modtager = new Modtager();
+            modtager.LederId = leder.LederId;
+            context.Modtagere.Add(modtager);
+            Sælger sælger = new Sælger();
+            sælger.LederId = leder.LederId;
+            context.Sælgere.Add(sælger);
+        }
+        public void RemoveLederFromModtagerAndSælger(Leder leder)
+        {
+            Modtager modtager = context.Set<Modtager>().Where(l => l.LederId == leder.LederId).FirstOrDefault();    
+            context.Modtagere.Remove(modtager);
+            context.SaveChanges();
+            Sælger sælger = context.Set<Sælger>().Where(l => l.LederId == leder.LederId).FirstOrDefault();
+            context.Sælgere.Remove(sælger);
+            context.SaveChanges();
+        }
         public void AddLeder(Leder leder)
         {
             context.Ledere.Add(leder);
+            context.SaveChanges();
+            AddLederToModtagerAndSælger(leder);
             context.SaveChanges();
         }
 
@@ -47,6 +67,8 @@ namespace LodBasen.Services.EFServices
         {
             if (leder != null)
             {
+                RemoveLederFromModtagerAndSælger(leder);
+                context.SaveChanges();
                 context.Ledere.Remove(leder);
                 context.SaveChanges();
             }

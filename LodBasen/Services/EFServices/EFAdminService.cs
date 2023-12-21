@@ -16,6 +16,11 @@ namespace LodBasen.Services.EFServices
         {
             return context.Admins.AsNoTracking().ToList();
         }
+
+        public IEnumerable<Lodseddel> GetLodsalgForAdmin()
+        {
+            return context.Lodsedler.AsNoTracking().ToList();
+        }
         public void AddAdmin(Admin admin)
         {
             context.Admins.Add(admin);

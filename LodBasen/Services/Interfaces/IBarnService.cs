@@ -10,6 +10,8 @@ namespace LodBasen.Services.Interfaces
         IEnumerable<Barn> GetBørn(string search);
         IEnumerable<Barn> GetBørn();
         void DeleteBarn(Barn barn);
+        void AddBarnToModtager(Barn barn);
+        void RemoveBarnFromModtager(Barn barn);
         void AddBarn(Barn barn);
         void UpdateBarn(Barn barn);
         IEnumerable<Barn> GetBørnByGruppeId(int id);

@@ -6,6 +6,8 @@ namespace LodBasen.Services.Interfaces
     {
         public IEnumerable<Admin> GetAdmins();
 
+        public IEnumerable<Lodseddel> GetLodsalgForAdmin();
+
         public void AddAdmin(Admin admin);
 
         public void UpdateAdmin(Admin admin);
