@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using LodBasen.Services.Interfaces;
 using LodBasen.Models;
 using LodBasen.Helpers;
+using Xunit.Sdk;
 
 namespace LodBasen.Pages.Barn
 {
@@ -25,7 +26,6 @@ namespace LodBasen.Pages.Barn
         public IActionResult OnPost()
         {
             barnService.DeleteBarn(barn);
-
             return RedirectToPage("GetBarn");
         }
     }

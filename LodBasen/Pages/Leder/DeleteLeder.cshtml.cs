@@ -24,7 +24,6 @@ namespace LodBasen.Pages.Leder
             public IActionResult OnPost()
             {
                 lederService.DeleteLeder(leder);
-
                 return RedirectToPage("GetLeder");
             }
         }

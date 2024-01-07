@@ -24,6 +24,7 @@ namespace LodBasen.Pages.Gruppe
         }
         public async Task<IActionResult> OnPostAsync()
         {
+          
             await gruppeService.DeleteGruppe(Gruppe);
             return RedirectToPage("GetGruppe");
         }
