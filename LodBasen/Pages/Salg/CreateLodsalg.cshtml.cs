@@ -39,13 +39,14 @@ namespace LodBasen.Pages.Salg
             SælgerOptions = _salgService.GetSælgere().Select(s => new SelectListItem
             {
                 Value = s.SælgerId.ToString(),
-                Text = s.SælgerId.ToString()
-            });
+                Text = s.Admin?.Navn.ToString() + s.Leder?.Navn.ToString()
+                
+            }) ;
 
             ModtagerOptions = _salgService.GetModtagere().Select(m => new SelectListItem
             {
                 Value = m.ModtagerId.ToString(),
-                Text = m.ModtagerId.ToString()
+                Text = m.Leder?.Navn.ToString() + m.Barn?.Navn.ToString() 
             });
 
             LodseddelOptions = _salgService.GetLodsedler().Select(l => new SelectListItem
@@ -56,6 +57,10 @@ namespace LodBasen.Pages.Salg
         }
         public IActionResult OnPost()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
             // Hent sælger, modtager, og lodseddel fra databasen baseret på de valgte id'er
             var sælger = _salgService.GetSælgerById(SelectedSælgerId);
             var modtager = _salgService.GetModtagerById(SelectedModtagerId);
