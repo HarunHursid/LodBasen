@@ -17,9 +17,6 @@ public partial class Lodsalg
     }
     public Lodsalg(int sælgerId, int modtagerId, int lodseddelId)
     {
-        //Sælger.SælgerId = sælgerId;
-        //Modtager.ModtagerId = modtagerId;
-        //Lodseddel.LodseddelId = lodseddelId;
         Sælger = new Sælger { SælgerId = sælgerId };
         Modtager = new Modtager { ModtagerId = modtagerId };
         Lodseddel = new Lodseddel { LodseddelId = lodseddelId };
@@ -29,12 +26,15 @@ public partial class Lodsalg
     [Column("Lodsalgs_ID")]
     public int LodsalgsId { get; set; }
 
+    [Required]
     [Column("Sælger_ID")]
     public int SælgerId { get; set; }
 
+    [Required]
     [Column("Modtager_ID")]
     public int ModtagerId { get; set; }
 
+    [Required]
     [Column("Lodseddel_ID")]
     public int LodseddelId { get; set; }
 

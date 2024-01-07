@@ -49,18 +49,18 @@ namespace LodBasen.Services.EFServices
         }
         public IEnumerable<Sælger> GetSælgere()
         {
-            return context.Sælgere.ToList();
+            return context.Sælgere.Include(a => a.Admin).Include(l => l.Leder).ToList();
         }
+
         public IEnumerable<Modtager> GetModtagere()
         {
-            return context.Modtagere.ToList();
+            return context.Modtagere.Include(l => l.Leder).Include(b => b.Barn).ToList();
         }
 
         public IEnumerable<Lodseddel> GetLodsedler()
         {
             return context.Lodsedler.ToList();
         }
-
         public Sælger GetSælgerById(int sælgerId)
         {
             return context.Set<Sælger>().FirstOrDefault(s => s.SælgerId == sælgerId);

@@ -23,7 +23,6 @@ namespace LodBasen.Pages.Barn
             barn = BarnService.GetBarnById(id);
 
             GruppeNavnOptions = BarnService.GetAllGruppeNavn();
-            //barn.BarnId = id;
         }
         IBarnService BarnService;
         public CreateBarnModel(IBarnService service)

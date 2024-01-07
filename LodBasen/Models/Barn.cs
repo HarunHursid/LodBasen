@@ -15,7 +15,7 @@ namespace LodBasen.Models
       [Column("Barn_ID")]
       public int BarnId { get; set; }
 
-      [Required]
+      [Required(ErrorMessage = "Navn på barn er påkrævet")]
      [StringLength(30)]
      [Unicode(false)]
      public string Navn { get; set; }

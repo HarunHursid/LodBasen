@@ -31,6 +31,7 @@ namespace LodBasen.Pages.Salg
         }
         public IActionResult OnPost(int id)
         {
+           
             Lodsalg lodsalg = salgService.GetLodsalgById(id);
             salgService.AfslutOverførsel(lodsalg, solgtInput);
 

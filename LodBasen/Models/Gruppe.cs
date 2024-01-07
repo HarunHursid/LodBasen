@@ -16,7 +16,7 @@ public partial class Gruppe
     [Column("Gruppe_ID")]
     public int GruppeId { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "Gruppe navn er påkrævet")]
     [Column("Gruppe_Navn")]
     [StringLength(30)]
     [Unicode(false)]

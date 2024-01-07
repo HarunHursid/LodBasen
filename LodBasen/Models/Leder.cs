@@ -15,7 +15,7 @@ public partial class Leder
     [Column("Leder_ID")]
     public int LederId { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "Leder navn er påkrævet")]
     [StringLength(30)]
     [Unicode(false)]
     public string Navn { get; set; }
