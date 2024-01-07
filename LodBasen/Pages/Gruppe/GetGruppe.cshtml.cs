@@ -19,7 +19,7 @@ namespace LodBasen.Pages.Gruppe
 			gruppeService = service;
 		}
 		public IEnumerable<Models.Gruppe> Grupper { get; set; } = new List<Models.Gruppe>();
-		public void OnGet()
+		public /*void*/ IActionResult OnGet()
 		{
 			if (!String.IsNullOrEmpty(Search))
 			{
@@ -27,6 +27,7 @@ namespace LodBasen.Pages.Gruppe
 			}
 			else
 				Grupper = gruppeService.GetGrupper();
+			return Page();
 		}
 	}
 }

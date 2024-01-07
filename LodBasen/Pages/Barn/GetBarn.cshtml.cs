@@ -43,6 +43,7 @@ namespace LodBasen.Pages.Barn
         {
             barnService = service;
         }
+
         public void OnGet(int? pageIndex)
         {
             const int pageSize = 10; // Adjust as needed
