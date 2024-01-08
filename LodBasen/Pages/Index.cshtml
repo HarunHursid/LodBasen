@@ -1,9 +1,124 @@
 ﻿@page
-@model LodBasen.Pages.Auth.LoginModel;
+@model LodBasen.Pages.Auth.LoginModel
 @{
     ViewData["Title"] = "Home page";
 }
-<link rel="stylesheet" href="~/css/style.css">
+<body>
+    <div class="grid-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined"> menu </span>
+            </div>
+            <div class="header-left">
+                <span class="material-icons-outlined">search</span>
+            </div>
+            <div class="header-right">
+                <span class="material-icons-outlined">notifications</span>
+                <span class="material-icons-outlined">email</span>
+                <span class="material-icons-outlined">account_circle </span>
+            </div>
+        </header>
+        <!-- End Header -->
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">local_activity</span> Lodbasen
+                </div>
+                <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+            </div>
 
-<h2 class="text-center">Velkommen til LodBasen</h2>
-<p class="text-center">Tag et kig omkring :)</p>
+            <ul class="sidebar-list">
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">dashboard</span> Dashboard
+                </li>
+                <a style="text-decoration: none;" asp-area="" asp-page="/GetSuperSælger">
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">leaderboard</span> Supersælger
+                </li>
+                </a>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">child_care</span> Barn
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">groups</span>
+                    Gruppe
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">person</span> Leder
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">send</span> Overførsel
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">admin_panel_settings</span>
+                    Admin
+                </li>
+            </ul>
+        </aside>
+        <!-- End Sidebar -->
+        <!-- Main -->
+        <main class="main-container">
+            <div class="main-title">
+                <p class="font-weight-bold">DASHBOARD</p>
+            </div>
+
+            <div class="main-cards">
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="text-primary">SUPERSÆLGER</p>
+                        <span class="material-icons-outlined text-blue">leaderboard</span>
+                    </div>
+                    <span class="text-primary font-weight-bold">15</span>
+                </div>
+
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="text-primary">BØRN</p>
+                        <span class="material-icons-outlined text-orange">child_care</span>
+                    </div>
+                    <span class="text-primary font-weight-bold">83</span>
+                </div>
+
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="text-primary">GRUPPER</p>
+                        <span class="material-icons-outlined text-green">groups</span>
+                    </div>
+                    <span class="text-primary font-weight-bold">79</span>
+                </div>
+
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="text-primary">LEDERE</p>
+                        <span class="material-icons-outlined text-red">person</span>
+                    </div>
+                    <span class="text-primary font-weight-bold">56</span>
+                </div>
+            </div>
+
+            <div class="charts">
+                <div class="charts-card">
+                    <p class="chart-title">Top 3 Sælgere</p>
+                    <div id="bar-chart"></div>
+                </div>
+
+                <div class="charts-card">
+                    <p class="chart-title">Lotteri Indkomst</p>
+                    <div id="area-chart"></div>
+                </div>
+            </div>
+        </main>
+        <!-- End Main -->
+    </div>
+
+    <!-- SCRIPTS -->
+    <!-- ApexCharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.45.0/apexcharts.min.js"
+            integrity="sha512-UOduKRIf9+8H/k0GvYVVZp0SBIzVZ7aGvPstIKic8F172T1x51EMCIVhkaV1NbcFAB6RRKo4mWstwk3nAMUOCA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    <!-- Custom JS -->
+    <script src="/js/site.js"></script>
+</body>
