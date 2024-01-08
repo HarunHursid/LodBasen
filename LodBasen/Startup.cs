@@ -1,6 +1,7 @@
 ﻿using LodBasen.Models;
 using LodBasen.Services.EFServices;
 using LodBasen.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace LodBasen
 {
@@ -25,7 +26,7 @@ namespace LodBasen
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential= true;
             });
-            services.AddDbContext<lodbasen_dk_db_lodbasenContext>();
+            services.AddDbContext<lodbasen_dk_db_lodbasenContext>(options => options.UseSqlServer(Configuration.GetConnectionString("lodbasenConnection")));
             services.AddTransient<IBarnService, EFBarnService>();
             services.AddTransient<IGruppeService, EFGruppeService>();
             services.AddTransient<ILederService, EFLederService>();
