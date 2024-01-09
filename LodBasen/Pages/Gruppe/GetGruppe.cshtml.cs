@@ -3,12 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using LodBasen.Models;
 using LodBasen.Helpers;
+using Microsoft.AspNetCore.Authorization;
+using Xunit.Sdk;
 
 namespace LodBasen.Pages.Gruppe
 {
-    [RequireAuth(RequiredRole = "Admin")]
-    public class GetGruppeModel : PageModel
+    [RequireAuth]
+	public class GetGruppeModel : PageModel
     {
+
 		[BindProperty(SupportsGet = true)]
 		public string Search { get; set; }
 
@@ -21,12 +24,15 @@ namespace LodBasen.Pages.Gruppe
 		public IEnumerable<Models.Gruppe> Grupper { get; set; } = new List<Models.Gruppe>();
 		public void OnGet()
 		{
-			if (!String.IsNullOrEmpty(Search))
-			{
-				Grupper = gruppeService.GetGrupper(Search);
-			}
-			else
-				Grupper = gruppeService.GetGrupper();
+				if (!String.IsNullOrEmpty(Search))
+				{
+					Grupper = gruppeService.GetGrupper(Search);
+				}
+				else
+				{
+					Grupper = gruppeService.GetGrupper();
+				}
+			
 		}
 	}
 }

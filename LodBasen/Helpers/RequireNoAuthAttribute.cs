@@ -16,7 +16,7 @@ namespace LodBasen.Helpers
 
             if (role != null)
             {
-                context.Result = new RedirectResult("/");
+                context.Result = new RedirectResult("/GetSuperSælger");
             }
         }
 

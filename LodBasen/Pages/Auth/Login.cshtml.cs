@@ -67,14 +67,12 @@ namespace LodBasen.Pages.Auth
                                 if (result == PasswordVerificationResult.Success
                                     || result == PasswordVerificationResult.SuccessRehashNeeded)
                                 {
-                                    // successful password verification => initialize the session
                                     HttpContext.Session.SetInt32("id", id);
                                     HttpContext.Session.SetString("navn", navn);
                                     HttpContext.Session.SetString("email", email);
                                     HttpContext.Session.SetString("role", role);
                                     HttpContext.Session.SetString("created_at", created_at);
 
-                                    // the user is authenticated successfully => redirect to the home page
                                     Response.Redirect("/Barn/GetBarn");
                                 }
                             }

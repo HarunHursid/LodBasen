@@ -9,52 +9,54 @@
 
 <div class="table-container">
 
-    <div class="headerh1">
-        <h1>Grupper</h1>
+       <div class="headerh1">
+           <h1>Grupper</h1>
 
-        <a asp-page="/Gruppe/CreateGruppe">
-            <input type="button" class="btn btn-outline-primary" value="Tilføj gruppe" />
-        </a>
-    </div>
+           <a asp-page="/Gruppe/CreateGruppe">
+               <input type="button" class="btn btn-outline-primary" value="Tilføj gruppe" />
+           </a>
+       </div>
 
-    <hr />
+       <hr />
 
-    <table class="table table-striped rounded-table shadow p-3 mb-5 bg-white rounded">
-        <thead class="t-head">
-            <tr>
-                <th class="th-item th-gruppe">Navn</th>
-                <th class="th-item th-navn">Nummer</th>
-                <th class="th-item th-knap"></th>
-                <th class="th-item th-knap"></th>
-            </tr>
-        </thead>
-        <tbody>
+       <table class="table table-striped rounded-table shadow p-3 mb-5 bg-white rounded">            
+           <thead class="t-head">
+                <tr>
+                    <th class="th-item th-gruppe">Navn</th>
+                    <th class="th-item th-navn">Nummer</th>
+                    <th class="th-item th-knap"></th>
+                    <th class="th-item th-knap"></th>
+                </tr>
+           </thead>
 
-            @if (Model != null)
-            {
-                @foreach (var item in Model.Grupper)
+            <tbody>
+
+                @if (Model != null)
                 {
-                    <tr>
-                        <td>
-                            <a class="a-link" asp-page="/Barn/GruppeBarn" asp-route-id="@item.GruppeId">@item.GruppeNavn</a>
-                        </td>
-                        <td class="td-id">
-                            @item.GruppeId
-                        </td>
-                        <td>
-                            <a asp-page="/Gruppe/UpdateGruppe" asp-route-id="@item.GruppeId">
-                                <submit class="btn btn-outline-dark"><i class="fa fa-pencil"></i></submit>
-                            </a>
+                    @foreach (var item in Model.Grupper)
+                    {
+                        <tr>
+                            <td>
+                                <a class="a-link" asp-page="/Barn/GruppeBarn" asp-route-id="@item.GruppeId">@item.GruppeNavn</a>
+                            </td>
+                            <td class="td-id">
+                                @item.GruppeId
+                            </td>
+                            <td>
+                                <a asp-page="/Gruppe/UpdateGruppe" asp-route-id="@item.GruppeId">
+                                    <submit class="btn btn-outline-dark"><i class="fa fa-pencil"></i></submit>
+                                </a>
 
-                        </td>
-                        <td>
-                            <a asp-page="/Gruppe/DeleteGruppe" asp-route-id="@item.GruppeId">
-                                <submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
-                            </a>
-                        </td>
-                    </tr>
+                            </td>
+                            <td>
+                                <a asp-page="/Gruppe/DeleteGruppe" asp-route-id="@item.GruppeId">
+                                    <submit class="btn btn-outline-danger"><i class="fa fa-trash"></i></submit>
+                                </a>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-    </table>
+            </tbody>
+       </table>
+    
 </div>

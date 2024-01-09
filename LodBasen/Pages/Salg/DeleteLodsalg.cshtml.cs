@@ -9,9 +9,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LodBasen.Pages.Salg
 {
+    [RequireAuth(RequiredRole = "Admin")]
     public class DeleteLodsalgModel : PageModel
     {
-        [RequireAuth(RequiredRole = "Admin")]
+        
 
         [BindProperty]
         public Models.Lodsalg lodsalg{ get; set; }
