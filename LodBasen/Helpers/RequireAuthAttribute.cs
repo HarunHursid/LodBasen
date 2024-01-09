@@ -20,13 +20,13 @@ namespace LodBasen.Helpers
 
             if (role == null)
             {
-                context.Result = new RedirectResult("/GetSuperSælger");
+                context.Result = new RedirectResult("/");
             }
             else 
             {
                 if (RequiredRole.Length > 0 && !RequiredRole.Equals(role)) 
                 {
-                    context.Result = new RedirectResult("/GetSuperSælger");
+                    context.Result = new RedirectResult("/Barn/GetBarn");
                 }
             }
 

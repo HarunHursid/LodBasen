@@ -1,3 +1,4 @@
+using LodBasen.Helpers;
 using LodBasen.Models;
 using LodBasen.Services.EFServices;
 using LodBasen.Services.Interfaces;
@@ -8,9 +9,11 @@ using System.Linq;
 
 
 namespace LodBasen.Pages.Salg
-    {
+{
+    [RequireAuth]
     public class CreateLodsalgModel : PageModel
     {
+
         private readonly ISalgService _salgService;
 
         public CreateLodsalgModel(ISalgService salgService)

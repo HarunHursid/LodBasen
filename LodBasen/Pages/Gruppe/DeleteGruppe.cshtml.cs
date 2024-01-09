@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LodBasen.Pages.Gruppe
 {
-    [RequireAuth(RequiredRole = "Admin")]
+    [RequireAuth]
     public class DeleteGruppeModel : PageModel
     {
 

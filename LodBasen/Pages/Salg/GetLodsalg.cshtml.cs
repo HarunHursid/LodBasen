@@ -1,3 +1,4 @@
+using LodBasen.Helpers;
 using LodBasen.Models;
 using LodBasen.Services.EFServices;
 using LodBasen.Services.Interfaces;
@@ -6,8 +7,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LodBasen.Pages.Salg
 {
+    [RequireAuth]
     public class GetLodsalgModel : PageModel
     {
+        
         [BindProperty]
         public string Search { get; set; }
         public IEnumerable<Models.Lodsalg> Lodsalgssamling { get; set; }
